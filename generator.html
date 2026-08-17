@@ -1,199 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Link Generator</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: #0f172a;
-            color: #f8fafc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 40px;
-            width: 90%;
-            max-width: 500px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        h2 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            text-align: center;
-            color: #3b82f6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: #94a3b8;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid #334155;
-            border-radius: 8px;
-            color: white;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        input:focus {
-            border-color: #3b82f6;
-        }
-
-        .btn {
-            background: #3b82f6;
-            color: white;
-            border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: background 0.3s;
-        }
-
-        .btn:hover {
-            background: #2563eb;
-        }
-
-        .result-box {
-            margin-top: 25px;
-            display: none;
-        }
-
-        .result-box.active {
-            display: block;
-        }
-
-        .output-url {
-            background: #020617;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px dashed #475569;
-            word-break: break-all;
-            font-size: 13px;
-            color: #10b981;
-            margin-bottom: 10px;
-        }
-
-        .btn-copy {
-            background: #10b981;
-            margin-top: 5px;
-        }
-
-        .btn-copy:hover {
-            background: #059669;
-        }
+        body { background: #0f172a; color: white; font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; }
+        .card { background: #1e293b; padding: 25px; border-radius: 12px; width: 400px; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 6px; border: none; }
+        button { width: 100%; padding: 10px; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer; }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <h2>
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-            </svg>
-            Link Generator
-        </h2>
-        
-        <div class="input-group">
-            <label for="baseUrl">Protected Page Base URL (Your Vercel/Domain link):</label>
-            <input type="url" id="baseUrl" placeholder="https://your-domain.vercel.app" required>
-        </div>
-
-        <button class="btn" onclick="generateSecureLink()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-            Generate Link
-        </button>
-
-        <div class="result-box" id="resultBox">
-            <label>Put this link in your Shortener:</label>
-            <div class="output-url" id="finalUrl"></div>
-            <button class="btn btn-copy" onclick="copyToClipboard()">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                </svg>
-                Copy Link
-            </button>
-        </div>
+    <div class="card">
+        <h2>Link Generator</h2>
+        <input type="text" id="url" placeholder="Apna Website URL (eg: https://my-site.vercel.app)">
+        <button onclick="generate()">Generate Secure Link</button>
+        <p id="output" style="margin-top:20px; word-break: break-all; color: #10b981;"></p>
     </div>
 
     <script>
-        function generateToken() {
-            const chars = 'abcdef0123456789';
-            let token = '';
-            for (let i = 0; i < 64; i++) {
-                token += chars[Math.floor(Math.random() * chars.length)];
-            }
-            // User requested to change to 'asvm_secure'
-            return token + 'asvm_secure';
-        }
-
-        function generateSecureLink() {
-            let baseUrl = document.getElementById('baseUrl').value.trim();
-            
-            if (!baseUrl) {
-                alert("Bhai, pehle Base URL toh daalo!");
-                return;
-            }
-
-            if (baseUrl.endsWith('/')) {
-                baseUrl = baseUrl.slice(0, -1);
-            }
-
-            const signature = generateToken();
-            const finalUrl = `${baseUrl}?sig=${signature}`;
-
-            document.getElementById('finalUrl').innerText = finalUrl;
-            document.getElementById('resultBox').classList.add('active');
-        }
-
-        function copyToClipboard() {
-            const urlText = document.getElementById('finalUrl').innerText;
-            navigator.clipboard.writeText(urlText).then(() => {
-                alert("Link Copied! Ab isko apne shortener me daal do.");
-            }).catch(err => {
-                alert("Copy fail ho gaya, manually copy kar lo.");
-            });
+        function generate() {
+            const base = document.getElementById('url').value;
+            const token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            const final = `${base}?sig=${token}asvm_secure`;
+            document.getElementById('output').innerText = final;
         }
     </script>
 </body>
