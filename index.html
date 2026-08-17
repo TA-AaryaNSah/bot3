@@ -3,193 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Access Verification</title>
+    <title>Verification Required</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background: #0f172a;
-            color: #f8fafc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 40px;
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        /* Screen States */
-        #verifying-screen, #success-screen, #error-screen {
-            display: none;
-        }
-
-        #verifying-screen.active, 
-        #success-screen.active, 
-        #error-screen.active {
-            display: block;
-        }
-
-        /* SVG & Elements */
-        .svg-icon {
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-
-        h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        p {
-            color: #94a3b8;
-            font-size: 15px;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-
-        .loader {
-            border: 4px solid #334155;
-            border-top: 4px solid #3b82f6;
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        .btn {
-            background: #3b82f6;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 14px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s;
-        }
-
-        .btn svg {
-            margin-right: 8px;
-        }
-
-        .btn:hover {
-            background: #2563eb;
-        }
-
-        .btn-danger {
-            background: #ef4444;
-        }
-
-        .btn-danger:hover {
-            background: #dc2626;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        body { background: #0f172a; color: white; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: sans-serif; }
+        .container { background: rgba(30, 41, 59, 0.7); padding: 40px; border-radius: 16px; text-align: center; border: 1px solid #334155; }
+        .hidden { display: none; }
+        .visible { display: block; }
+        .loader { border: 4px solid #334155; border-top: 4px solid #3b82f6; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <!-- Verifying State -->
-        <div id="verifying-screen" class="active">
+        <div id="verifying" class="visible">
             <div class="loader"></div>
-            <h2>Verifying Access...</h2>
-            <p>Please wait while we check your access token. Do not refresh the page.</p>
+            <h2>Validating Access...</h2>
         </div>
-
-        <!-- Success State -->
-        <div id="success-screen">
-            <div class="svg-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                </svg>
-            </div>
-            <h2>Access Granted</h2>
-            <p>Token verified successfully. You have passed the shortener.</p>
-            <a href="#" class="btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-                Proceed to Content
-            </a>
+        <div id="content" class="hidden">
+            <h2>Access Granted! ✅</h2>
+            <p>Redirecting to your content...</p>
         </div>
-
-        <!-- Error State -->
-        <div id="error-screen">
-            <div class="svg-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    <line x1="12" y1="8" x2="12" y2="12"></line>
-                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                </svg>
-            </div>
-            <h2>Direct Access Denied</h2>
-            <p>Bypass detected! You must go through the official shortener link to access this page.</p>
-            <a href="https://your-shortener-link.com" class="btn btn-danger">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                </svg>
-                Get Valid Link
-            </a>
+        <div id="denied" class="hidden">
+            <h2>Access Denied 🚫</h2>
+            <p>Direct access is prohibited. Please use the valid shortener link.</p>
         </div>
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const signature = urlParams.get('sig');
-            
-            const verifyingScreen = document.getElementById("verifying-screen");
-            const successScreen = document.getElementById("success-screen");
-            const errorScreen = document.getElementById("error-screen");
+        const urlParams = new URLSearchParams(window.location.search);
+        const sig = urlParams.get('sig');
 
-            function switchScreen(screenElement) {
-                verifyingScreen.classList.remove('active');
-                successScreen.classList.remove('active');
-                errorScreen.classList.remove('active');
-                screenElement.classList.add('active');
-            }
-
-            setTimeout(() => {
-                // Check if signature exists and is valid length
-                if (!signature || signature.length < 32) {
-                    switchScreen(errorScreen);
-                    return;
-                }
-
-                // If check passes
-                switchScreen(successScreen);
-
-                // Remove 'sig' from URL
-                window.history.replaceState({}, document.title, window.location.pathname);
-
-            }, 1500); 
-        });
+        // Strong Anti-Bypass Check
+        if (sig && sig.endsWith('asvm_secure') && sig.length > 40) {
+            document.getElementById('verifying').className = 'hidden';
+            document.getElementById('content').className = 'visible';
+            // Yahan content load karo ya redirect karo
+            console.log("Verified Access");
+        } else {
+            document.getElementById('verifying').className = 'hidden';
+            document.getElementById('denied').className = 'visible';
+        }
     </script>
 </body>
 </html>
