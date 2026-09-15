@@ -10,7 +10,12 @@
 
 <title>ASVM Link Manager</title>
 
+
 <style>
+
+/* ================================================= */
+/* GLOBAL */
+/* ================================================= */
 
 * {
     box-sizing: border-box;
@@ -18,10 +23,12 @@
 
 body {
     margin: 0;
+
     min-height: 100vh;
 
     background: #0b0d12;
-    color: #fff;
+
+    color: #ffffff;
 
     font-family:
         Arial,
@@ -34,8 +41,72 @@ input {
     font-family: inherit;
 }
 
-.container {
+
+/* ================================================= */
+/* LOGIN */
+/* ================================================= */
+
+#loginPage {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.login-box {
+
     width: 100%;
+
+    max-width: 400px;
+
+    padding: 30px;
+
+    background: #151820;
+
+    border: 1px solid #272c36;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,0,0,.35);
+}
+
+.login-title {
+
+    margin: 0 0 8px;
+
+    font-size: 27px;
+}
+
+.login-subtitle {
+
+    margin: 0 0 25px;
+
+    color: #8f96a3;
+
+    font-size: 14px;
+}
+
+
+/* ================================================= */
+/* ADMIN */
+/* ================================================= */
+
+.hidden {
+    display: none !important;
+}
+
+.container {
+
+    width: 100%;
+
     max-width: 1100px;
 
     margin: auto;
@@ -44,47 +115,68 @@ input {
 }
 
 
-/* ============================= */
+/* ================================================= */
 /* HEADER */
-/* ============================= */
+/* ================================================= */
 
 .header {
+
     display: flex;
 
     align-items: center;
+
     justify-content: space-between;
 
-    gap: 15px;
-
     margin-bottom: 25px;
+
+    gap: 15px;
 }
 
 .logo {
+
     font-size: 24px;
+
     font-weight: 700;
 }
 
+.header-right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.admin-email {
+
+    color: #8f96a3;
+
+    font-size: 12px;
+}
+
 .logout {
-    width: auto;
 
-    padding: 9px 15px;
+    padding: 9px 14px;
 
-    background: #242833;
-    color: #fff;
+    border-radius: 9px;
 
     border: 1px solid #343946;
 
-    border-radius: 9px;
+    background: #242833;
+
+    color: white;
 
     cursor: pointer;
 }
 
 
-/* ============================= */
+/* ================================================= */
 /* CARD */
-/* ============================= */
+/* ================================================= */
 
 .card {
+
     background: #151820;
 
     border: 1px solid #272c36;
@@ -97,64 +189,24 @@ input {
 }
 
 .card-title {
+
     margin: 0 0 18px;
 
     font-size: 18px;
 }
 
 
-/* ============================= */
-/* LOGIN */
-/* ============================= */
-
-#loginPage {
-    min-height: 100vh;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-}
-
-.login-box {
-    width: 100%;
-    max-width: 420px;
-
-    background: #151820;
-
-    border: 1px solid #272c36;
-
-    border-radius: 18px;
-
-    padding: 30px;
-}
-
-.login-title {
-    margin: 0 0 8px;
-
-    font-size: 26px;
-}
-
-.login-subtitle {
-    margin: 0 0 25px;
-
-    color: #8f96a3;
-
-    font-size: 14px;
-}
-
-
-/* ============================= */
-/* FORM */
-/* ============================= */
+/* ================================================= */
+/* INPUT */
+/* ================================================= */
 
 .group {
+
     margin-bottom: 16px;
 }
 
 label {
+
     display: block;
 
     margin-bottom: 8px;
@@ -165,6 +217,7 @@ label {
 }
 
 input {
+
     width: 100%;
 
     padding: 13px 14px;
@@ -178,220 +231,157 @@ input {
     border-radius: 9px;
 
     outline: none;
+
+    font-size: 14px;
 }
 
 input:focus {
-    border-color: #666;
+
+    border-color: #707783;
 }
 
 
-/* ============================= */
-/* BUTTON */
-/* ============================= */
+/* ================================================= */
+/* BUTTONS */
+/* ================================================= */
 
 .btn {
+
     border: 0;
 
     border-radius: 9px;
 
-    padding: 12px 16px;
+    padding: 11px 15px;
 
     cursor: pointer;
 
     font-weight: 600;
+
+    font-size: 13px;
 }
 
 .btn-primary {
-    width: 100%;
 
-    background: #fff;
-    color: #000;
+    background: #ffffff;
+
+    color: #000000;
+}
+
+.btn-secondary {
+
+    background: #242833;
+
+    color: #ffffff;
 }
 
 .btn-danger {
+
     background: #432126;
+
     color: #ff9da7;
 }
 
 .btn-success {
+
     background: #183b29;
+
     color: #83e6a7;
 }
 
-.btn-secondary {
-    background: #242833;
-    color: #fff;
+.btn:disabled {
+
+    opacity: .5;
+
+    cursor: not-allowed;
 }
 
 
-/* ============================= */
+/* ================================================= */
+/* LOGIN BUTTON */
+/* ================================================= */
+
+.login-button {
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: black;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+/* ================================================= */
 /* ERROR */
-/* ============================= */
+/* ================================================= */
 
 .error {
+
     display: none;
 
     margin-top: 12px;
 
-    color: #ff7777;
+    color: #ff7474;
 
     font-size: 13px;
 }
 
 
-/* ============================= */
+/* ================================================= */
 /* GENERATOR */
-/* ============================= */
+/* ================================================= */
 
 .generator {
-    display: grid;
 
-    grid-template-columns: 1fr auto;
+    display: flex;
 
     gap: 10px;
 }
 
-.generator .btn {
-    min-width: 150px;
+.generator input {
+
+    flex: 1;
+}
+
+.generator button {
+
+    min-width: 130px;
 }
 
 
-/* ============================= */
-/* STATS */
-/* ============================= */
+/* ================================================= */
+/* LOADING */
+/* ================================================= */
 
-.stats {
-    display: grid;
+.loading {
 
-    grid-template-columns:
-        repeat(4, 1fr);
+    display: none;
 
-    gap: 12px;
+    margin-top: 12px;
 
-    margin-bottom: 20px;
-}
-
-.stat {
-    background: #151820;
-
-    border: 1px solid #272c36;
-
-    border-radius: 14px;
-
-    padding: 18px;
-}
-
-.stat-name {
-    color: #8f96a3;
-
-    font-size: 13px;
-
-    margin-bottom: 8px;
-}
-
-.stat-value {
-    font-size: 25px;
-
-    font-weight: 700;
-}
-
-
-/* ============================= */
-/* TABLE */
-/* ============================= */
-
-.table-wrap {
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-
-    border-collapse: collapse;
-
-    min-width: 760px;
-}
-
-th,
-td {
-    text-align: left;
-
-    padding: 13px 10px;
-
-    border-bottom:
-        1px solid #272c36;
+    color: #999;
 
     font-size: 13px;
 }
 
-th {
-    color: #8f96a3;
 
-    font-weight: 600;
-}
-
-.destination {
-    max-width: 260px;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-    white-space: nowrap;
-}
-
-.short {
-    color: #9fc5ff;
-
-    word-break: break-all;
-}
-
-.status {
-    display: inline-block;
-
-    padding: 5px 9px;
-
-    border-radius: 20px;
-
-    font-size: 11px;
-}
-
-.active {
-    background: #173b27;
-
-    color: #75e39d;
-}
-
-.disabled {
-    background: #432126;
-
-    color: #ff9da7;
-}
-
-.actions {
-    display: flex;
-
-    gap: 6px;
-}
-
-.actions button {
-    padding: 7px 9px;
-
-    border-radius: 7px;
-
-    border: 0;
-
-    cursor: pointer;
-
-    font-size: 11px;
-}
-
-
-/* ============================= */
+/* ================================================= */
 /* GENERATED */
-/* ============================= */
+/* ================================================= */
 
 .generated {
+
     display: none;
 
     margin-top: 18px;
@@ -405,14 +395,28 @@ th {
     border-radius: 10px;
 }
 
-.generated input {
-    margin-bottom: 10px;
+.generated-row {
+
+    display: flex;
+
+    gap: 10px;
+}
+
+.generated-row input {
+
+    flex: 1;
+}
+
+.generated-row button {
+
+    min-width: 100px;
 }
 
 .success {
+
     display: none;
 
-    margin-top: 8px;
+    margin-top: 9px;
 
     color: #70df70;
 
@@ -420,48 +424,241 @@ th {
 }
 
 
-/* ============================= */
-/* HIDDEN */
-/* ============================= */
+/* ================================================= */
+/* STATS */
+/* ================================================= */
 
-.hidden {
-    display: none !important;
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+.stat {
+
+    padding: 18px;
+
+    background: #151820;
+
+    border: 1px solid #272c36;
+
+    border-radius: 14px;
+}
+
+.stat-name {
+
+    color: #8f96a3;
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+}
+
+.stat-value {
+
+    font-size: 25px;
+
+    font-weight: 700;
 }
 
 
-/* ============================= */
+/* ================================================= */
+/* MANAGEMENT HEADER */
+/* ================================================= */
+
+.management-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 18px;
+}
+
+.management-buttons {
+
+    display: flex;
+
+    gap: 8px;
+}
+
+
+/* ================================================= */
+/* TABLE */
+/* ================================================= */
+
+.table-wrap {
+
+    overflow-x: auto;
+}
+
+table {
+
+    width: 100%;
+
+    min-width: 800px;
+
+    border-collapse: collapse;
+}
+
+th,
+td {
+
+    padding: 13px 10px;
+
+    text-align: left;
+
+    border-bottom:
+        1px solid #272c36;
+
+    font-size: 13px;
+}
+
+th {
+
+    color: #8f96a3;
+
+    font-weight: 600;
+}
+
+.destination {
+
+    max-width: 280px;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+.short-id {
+
+    color: #9fc5ff;
+
+    font-weight: 600;
+}
+
+.status {
+
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+}
+
+.status-active {
+
+    background: #173b27;
+
+    color: #75e39d;
+}
+
+.status-disabled {
+
+    background: #432126;
+
+    color: #ff9da7;
+}
+
+.actions {
+
+    display: flex;
+
+    gap: 6px;
+
+    flex-wrap: nowrap;
+}
+
+.actions button {
+
+    padding: 7px 9px;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+
+/* ================================================= */
+/* EMPTY */
+/* ================================================= */
+
+.empty {
+
+    text-align: center;
+
+    color: #777;
+
+    padding: 35px !important;
+}
+
+
+/* ================================================= */
 /* MOBILE */
-/* ============================= */
+/* ================================================= */
 
 @media(max-width: 750px) {
 
+    .container {
+
+        padding: 15px;
+    }
+
     .stats {
+
         grid-template-columns:
             repeat(2, 1fr);
     }
 
     .generator {
-        grid-template-columns: 1fr;
+
+        flex-direction: column;
     }
 
-    .generator .btn {
+    .generator button {
+
         width: 100%;
     }
 
-}
+    .generated-row {
 
-@media(max-width: 450px) {
-
-    .container {
-        padding: 15px;
+        flex-direction: column;
     }
 
-    .card {
-        padding: 17px;
+    .generated-row button {
+
+        width: 100%;
     }
 
-    .stats {
-        grid-template-columns: 1fr 1fr;
+    .header {
+
+        align-items: flex-start;
+    }
+
+    .admin-email {
+
+        display: none;
+    }
+
+    .management-header {
+
+        align-items: stretch;
+
+        flex-direction: column;
     }
 
 }
@@ -487,7 +684,7 @@ th {
         </h1>
 
         <p class="login-subtitle">
-            Sign in to manage your short links.
+            Login to manage your short links.
         </p>
 
 
@@ -500,8 +697,8 @@ th {
             <input
                 type="email"
                 id="email"
-                placeholder="admin@example.com"
-                autocomplete="email"
+                placeholder="Email"
+                autocomplete="username"
             >
 
         </div>
@@ -524,7 +721,7 @@ th {
 
 
         <button
-            class="btn btn-primary"
+            class="login-button"
             id="loginBtn"
         >
             Login
@@ -563,19 +760,31 @@ th {
             ASVM Link Manager
         </div>
 
-        <button
-            class="logout"
-            id="logoutBtn"
-        >
-            Logout
-        </button>
+
+        <div class="header-right">
+
+            <span
+                class="admin-email"
+            >
+                demo@gmail.com
+            </span>
+
+
+            <button
+                class="logout"
+                id="logoutBtn"
+            >
+                Logout
+            </button>
+
+        </div>
 
     </div>
 
 
 
     <!-- ================================================= -->
-    <!-- GENERATOR -->
+    <!-- CREATE LINK -->
     <!-- ================================================= -->
 
     <div class="card">
@@ -591,6 +800,7 @@ th {
                 type="url"
                 id="mainUrl"
                 placeholder="https://example.com/page"
+                autocomplete="off"
             >
 
 
@@ -605,12 +815,18 @@ th {
 
 
         <div
+            class="loading"
+            id="loading"
+        >
+            Creating short link...
+        </div>
+
+
+        <div
             class="error"
             id="generateError"
         ></div>
 
-
-        <!-- GENERATED LINK -->
 
         <div
             class="generated"
@@ -622,19 +838,23 @@ th {
             </label>
 
 
-            <input
-                type="text"
-                id="generatedUrl"
-                readonly
-            >
+            <div class="generated-row">
+
+                <input
+                    type="text"
+                    id="generatedUrl"
+                    readonly
+                >
 
 
-            <button
-                class="btn btn-secondary"
-                id="copyGenerated"
-            >
-                Copy Link
-            </button>
+                <button
+                    class="btn btn-secondary"
+                    id="copyGenerated"
+                >
+                    Copy
+                </button>
+
+            </div>
 
 
             <div
@@ -651,7 +871,7 @@ th {
 
 
     <!-- ================================================= -->
-    <!-- STATS -->
+    <!-- STATISTICS -->
     <!-- ================================================= -->
 
     <div class="stats">
@@ -730,9 +950,31 @@ th {
 
     <div class="card">
 
-        <h2 class="card-title">
-            Link Management
-        </h2>
+
+        <div class="management-header">
+
+            <h2
+                class="card-title"
+                style="margin:0"
+            >
+                Link Management
+            </h2>
+
+
+            <div
+                class="management-buttons"
+            >
+
+                <button
+                    class="btn btn-secondary"
+                    id="refreshBtn"
+                >
+                    Refresh
+                </button>
+
+            </div>
+
+        </div>
 
 
         <div class="group">
@@ -740,7 +982,7 @@ th {
             <input
                 type="text"
                 id="search"
-                placeholder="Search links..."
+                placeholder="Search by ID or destination..."
             >
 
         </div>
@@ -783,9 +1025,9 @@ th {
                 </thead>
 
 
-                <tbody id="linksTable">
-
-                </tbody>
+                <tbody
+                    id="linksTable"
+                ></tbody>
 
             </table>
 
@@ -814,31 +1056,12 @@ import {
 
 
 import {
-    getAuth,
-
-    signInWithEmailAndPassword,
-
-    onAuthStateChanged,
-
-    signOut
-
-} from
-"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-
-import {
     getDatabase,
-
     ref,
-
     get,
-
     set,
-
     update,
-
     remove
-
 } from
 "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
@@ -877,15 +1100,10 @@ const firebaseConfig = {
 };
 
 
-
 const app =
     initializeApp(
         firebaseConfig
     );
-
-
-const auth =
-    getAuth(app);
 
 
 const db =
@@ -894,7 +1112,18 @@ const db =
 
 
 // ==================================================
-// DOM
+// ADMIN LOGIN
+// ==================================================
+
+const ADMIN_EMAIL =
+    "demo@gmail.com";
+
+const ADMIN_PASSWORD =
+    "demo@gmail.com";
+
+
+// ==================================================
+// ELEMENTS
 // ==================================================
 
 const loginPage =
@@ -915,100 +1144,29 @@ const loginError =
     );
 
 
-const generateError =
-    document.getElementById(
-        "generateError"
-    );
-
-
 // ==================================================
-// AUTH STATE
-// ==================================================
-
-onAuthStateChanged(
-    auth,
-    user => {
-
-        if (user) {
-
-            loginPage.classList.add(
-                "hidden"
-            );
-
-            adminPage.classList.remove(
-                "hidden"
-            );
-
-            loadLinks();
-
-        } else {
-
-            loginPage.classList.remove(
-                "hidden"
-            );
-
-            adminPage.classList.add(
-                "hidden"
-            );
-
-        }
-
-    }
-);
-
-
-// ==================================================
-// LOGIN
+// LOGIN FUNCTION
 // ==================================================
 
 document
     .getElementById("loginBtn")
     .addEventListener(
         "click",
-        async () => {
-
-            const email =
-                document
-                    .getElementById("email")
-                    .value
-                    .trim();
+        login
+    );
 
 
-            const password =
-                document
-                    .getElementById("password")
-                    .value;
+document
+    .getElementById("password")
+    .addEventListener(
+        "keydown",
+        event => {
 
+            if (
+                event.key === "Enter"
+            ) {
 
-            loginError.style.display =
-                "none";
-
-
-            if (!email || !password) {
-
-                showLoginError(
-                    "Enter email and password."
-                );
-
-                return;
-            }
-
-
-            try {
-
-                await signInWithEmailAndPassword(
-                    auth,
-                    email,
-                    password
-                );
-
-            } catch (error) {
-
-                console.error(error);
-
-                showLoginError(
-                    "Invalid email or password."
-                );
+                login();
 
             }
 
@@ -1016,13 +1174,99 @@ document
     );
 
 
-function showLoginError(message) {
+document
+    .getElementById("email")
+    .addEventListener(
+        "keydown",
+        event => {
 
-    loginError.textContent =
-        message;
+            if (
+                event.key === "Enter"
+            ) {
+
+                login();
+
+            }
+
+        }
+    );
+
+
+function login() {
+
+    const email =
+        document
+            .getElementById("email")
+            .value
+            .trim();
+
+
+    const password =
+        document
+            .getElementById("password")
+            .value;
+
 
     loginError.style.display =
-        "block";
+        "none";
+
+
+    if (
+        email === ADMIN_EMAIL &&
+        password === ADMIN_PASSWORD
+    ) {
+
+        sessionStorage.setItem(
+            "asvm_admin",
+            "true"
+        );
+
+
+        showAdmin();
+
+    } else {
+
+        loginError.textContent =
+            "Invalid email or password.";
+
+        loginError.style.display =
+            "block";
+
+    }
+
+}
+
+
+// ==================================================
+// CHECK LOGIN
+// ==================================================
+
+if (
+    sessionStorage.getItem(
+        "asvm_admin"
+    ) === "true"
+) {
+
+    showAdmin();
+
+}
+
+
+// ==================================================
+// SHOW ADMIN
+// ==================================================
+
+function showAdmin() {
+
+    loginPage.classList.add(
+        "hidden"
+    );
+
+    adminPage.classList.remove(
+        "hidden"
+    );
+
+    loadLinks();
 
 }
 
@@ -1035,26 +1279,56 @@ document
     .getElementById("logoutBtn")
     .addEventListener(
         "click",
-        async () => {
+        () => {
 
-            await signOut(auth);
+            sessionStorage.removeItem(
+                "asvm_admin"
+            );
+
+
+            adminPage.classList.add(
+                "hidden"
+            );
+
+
+            loginPage.classList.remove(
+                "hidden"
+            );
+
+
+            document
+                .getElementById(
+                    "email"
+                )
+                .value = "";
+
+
+            document
+                .getElementById(
+                    "password"
+                )
+                .value = "";
 
         }
     );
 
 
 // ==================================================
-// GENERATE SHORT ID
+// RANDOM SHORT ID
 // ==================================================
 
-function generateId(length = 7) {
+function generateShortId(
+    length = 7
+) {
 
     const chars =
         "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
 
 
     const values =
-        new Uint32Array(length);
+        new Uint32Array(
+            length
+        );
 
 
     crypto.getRandomValues(
@@ -1086,235 +1360,268 @@ function generateId(length = 7) {
 
 
 // ==================================================
-// CREATE SHORT LINK
+// CREATE LINK
 // ==================================================
 
 document
-    .getElementById("generateBtn")
+    .getElementById(
+        "generateBtn"
+    )
     .addEventListener(
         "click",
-        async () => {
-
-            const url =
-                document
-                    .getElementById("mainUrl")
-                    .value
-                    .trim();
-
-
-            generateError.style.display =
-                "none";
-
-
-            if (!url) {
-
-                showGenerateError(
-                    "Enter a URL."
-                );
-
-                return;
-            }
-
-
-            let parsed;
-
-
-            try {
-
-                parsed =
-                    new URL(url);
-
-            } catch {
-
-                showGenerateError(
-                    "Invalid URL."
-                );
-
-                return;
-            }
-
-
-            if (
-                parsed.protocol !== "http:" &&
-                parsed.protocol !== "https:"
-            ) {
-
-                showGenerateError(
-                    "Only HTTP and HTTPS URLs are allowed."
-                );
-
-                return;
-            }
-
-
-            const button =
-                document
-                    .getElementById(
-                        "generateBtn"
-                    );
-
-
-            button.disabled =
-                true;
-
-
-            button.textContent =
-                "Creating...";
-
-
-            try {
-
-                let id;
-
-
-                /*
-                 * Find unique ID
-                 */
-
-                for (
-                    let i = 0;
-                    i < 10;
-                    i++
-                ) {
-
-                    const possible =
-                        generateId();
-
-
-                    const snapshot =
-                        await get(
-                            ref(
-                                db,
-                                "links/" +
-                                possible
-                            )
-                        );
-
-
-                    if (!snapshot.exists()) {
-
-                        id =
-                            possible;
-
-                        break;
-
-                    }
-
-                }
-
-
-                if (!id) {
-
-                    throw new Error(
-                        "Could not create unique ID."
-                    );
-
-                }
-
-
-                /*
-                 * Save
-                 */
-
-                await set(
-
-                    ref(
-                        db,
-                        "links/" +
-                        id
-                    ),
-
-                    {
-
-                        url:
-                            parsed.href,
-
-                        active:
-                            true,
-
-                        clicks:
-                            0,
-
-                        createdAt:
-                            Date.now()
-
-                    }
-
-                );
-
-
-                /*
-                 * Short URL
-                 */
-
-                const shortUrl =
-                    window.location.origin +
-                    "/go/" +
-                    id;
-
-
-                document
-                    .getElementById(
-                        "generatedUrl"
-                    )
-                    .value =
-                    shortUrl;
-
-
-                document
-                    .getElementById(
-                        "generated"
-                    )
-                    .style.display =
-                    "block";
-
-
-                document
-                    .getElementById(
-                        "mainUrl"
-                    )
-                    .value =
-                    "";
-
-
-                loadLinks();
-
-
-            } catch (error) {
-
-                console.error(error);
-
-                showGenerateError(
-                    "Unable to create link."
-                );
-
-            }
-
-
-            button.disabled =
-                false;
-
-
-            button.textContent =
-                "Generate";
-
-        }
+        createLink
     );
 
 
-function showGenerateError(message) {
+async function createLink() {
 
-    generateError.textContent =
+    const input =
+        document.getElementById(
+            "mainUrl"
+        );
+
+
+    const url =
+        input.value.trim();
+
+
+    const error =
+        document.getElementById(
+            "generateError"
+        );
+
+
+    const loading =
+        document.getElementById(
+            "loading"
+        );
+
+
+    const button =
+        document.getElementById(
+            "generateBtn"
+        );
+
+
+    error.style.display =
+        "none";
+
+
+    if (!url) {
+
+        showGenerateError(
+            "Please enter a URL."
+        );
+
+        return;
+
+    }
+
+
+    let parsed;
+
+
+    try {
+
+        parsed =
+            new URL(url);
+
+    } catch {
+
+        showGenerateError(
+            "Please enter a valid URL."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        parsed.protocol !== "http:" &&
+        parsed.protocol !== "https:"
+    ) {
+
+        showGenerateError(
+            "Only HTTP and HTTPS URLs are allowed."
+        );
+
+        return;
+
+    }
+
+
+    button.disabled =
+        true;
+
+    loading.style.display =
+        "block";
+
+
+    try {
+
+        let shortId = null;
+
+
+        /*
+         * Generate unique ID
+         */
+
+        for (
+            let attempt = 0;
+            attempt < 10;
+            attempt++
+        ) {
+
+            const possibleId =
+                generateShortId();
+
+
+            const snapshot =
+                await get(
+                    ref(
+                        db,
+                        "links/" +
+                        possibleId
+                    )
+                );
+
+
+            if (!snapshot.exists()) {
+
+                shortId =
+                    possibleId;
+
+                break;
+
+            }
+
+        }
+
+
+        if (!shortId) {
+
+            throw new Error(
+                "Could not generate unique ID."
+            );
+
+        }
+
+
+        /*
+         * Save URL
+         */
+
+        await set(
+
+            ref(
+                db,
+                "links/" +
+                shortId
+            ),
+
+            {
+
+                url:
+                    parsed.href,
+
+                active:
+                    true,
+
+                clicks:
+                    0,
+
+                createdAt:
+                    Date.now()
+
+            }
+
+        );
+
+
+        /*
+         * Clean short URL
+         */
+
+        const shortUrl =
+            window.location.origin +
+            "/go/" +
+            shortId;
+
+
+        document
+            .getElementById(
+                "generatedUrl"
+            )
+            .value =
+            shortUrl;
+
+
+        document
+            .getElementById(
+                "generated"
+            )
+            .style.display =
+            "block";
+
+
+        input.value =
+            "";
+
+
+        /*
+         * Refresh table
+         */
+
+        await loadLinks();
+
+
+    } catch (err) {
+
+        console.error(err);
+
+        showGenerateError(
+            "Unable to create short link."
+        );
+
+    }
+
+
+    loading.style.display =
+        "none";
+
+    button.disabled =
+        false;
+
+}
+
+
+// ==================================================
+// GENERATE ERROR
+// ==================================================
+
+function showGenerateError(
+    message
+) {
+
+    const error =
+        document.getElementById(
+            "generateError"
+        );
+
+
+    error.textContent =
         message;
 
-    generateError.style.display =
+
+    error.style.display =
         "block";
 
 }
 
 
 // ==================================================
-// COPY GENERATED
+// COPY GENERATED LINK
 // ==================================================
 
 document
@@ -1325,44 +1632,21 @@ document
         "click",
         async () => {
 
-            const value =
-                document
-                    .getElementById(
-                        "generatedUrl"
-                    )
-                    .value;
-
-
-            try {
-
-                await navigator
-                    .clipboard
-                    .writeText(
-                        value
-                    );
-
-            } catch {
-
-                const input =
-                    document
-                        .getElementById(
-                            "generatedUrl"
-                        );
-
-                input.select();
-
-                document.execCommand(
-                    "copy"
+            const input =
+                document.getElementById(
+                    "generatedUrl"
                 );
 
-            }
+
+            await copyText(
+                input.value
+            );
 
 
             const success =
-                document
-                    .getElementById(
-                        "copySuccess"
-                    );
+                document.getElementById(
+                    "copySuccess"
+                );
 
 
             success.style.display =
@@ -1384,15 +1668,11 @@ document
 
 
 // ==================================================
-// STORE LINKS
+// LOAD LINKS
 // ==================================================
 
 let allLinks = [];
 
-
-// ==================================================
-// LOAD LINKS
-// ==================================================
 
 async function loadLinks() {
 
@@ -1400,7 +1680,10 @@ async function loadLinks() {
 
         const snapshot =
             await get(
-                ref(db, "links")
+                ref(
+                    db,
+                    "links"
+                )
             );
 
 
@@ -1420,9 +1703,27 @@ async function loadLinks() {
 
                         allLinks.push({
 
-                            id,
+                            id:
 
-                            ...value
+                                id,
+
+                            url:
+
+                                value.url || "",
+
+                            active:
+
+                                value.active !== false,
+
+                            clicks:
+
+                                Number(
+                                    value.clicks || 0
+                                ),
+
+                            createdAt:
+
+                                value.createdAt || 0
 
                         });
 
@@ -1434,8 +1735,8 @@ async function loadLinks() {
 
         allLinks.sort(
             (a, b) =>
-                (b.createdAt || 0) -
-                (a.createdAt || 0)
+                b.createdAt -
+                a.createdAt
         );
 
 
@@ -1449,7 +1750,7 @@ async function loadLinks() {
         console.error(error);
 
         alert(
-            "Unable to load links."
+            "Unable to load Firebase data."
         );
 
     }
@@ -1470,24 +1771,25 @@ function updateStats() {
     const active =
         allLinks.filter(
             item =>
-                item.active !== false
+                item.active
         ).length;
 
 
     const disabled =
         allLinks.filter(
             item =>
-                item.active === false
+                !item.active
         ).length;
 
 
     const clicks =
         allLinks.reduce(
-            (sum, item) =>
-                sum +
-                Number(
-                    item.clicks || 0
-                ),
+            (
+                total,
+                item
+            ) =>
+                total +
+                item.clicks,
             0
         );
 
@@ -1527,16 +1829,15 @@ function updateStats() {
 
 
 // ==================================================
-// RENDER
+// RENDER LINKS
 // ==================================================
 
 function renderLinks() {
 
     const tbody =
-        document
-            .getElementById(
-                "linksTable"
-            );
+        document.getElementById(
+            "linksTable"
+        );
 
 
     const search =
@@ -1556,21 +1857,18 @@ function renderLinks() {
         allLinks.filter(
             item => {
 
-                const id =
-                    item.id
-                    .toLowerCase();
-
-
-                const url =
-                    String(
-                        item.url || ""
-                    )
-                    .toLowerCase();
-
-
                 return (
-                    id.includes(search) ||
-                    url.includes(search)
+
+                    item.id
+                        .toLowerCase()
+                        .includes(search)
+
+                    ||
+
+                    item.url
+                        .toLowerCase()
+                        .includes(search)
+
                 );
 
             }
@@ -1580,22 +1878,29 @@ function renderLinks() {
     if (!filtered.length) {
 
         tbody.innerHTML = `
+
             <tr>
-                <td colspan="6"
-                    style="text-align:center;color:#888;padding:30px">
+
+                <td
+                    colspan="6"
+                    class="empty"
+                >
                     No links found.
                 </td>
+
             </tr>
+
         `;
 
         return;
+
     }
 
 
     filtered.forEach(
         item => {
 
-            const tr =
+            const row =
                 document.createElement(
                     "tr"
                 );
@@ -1609,35 +1914,25 @@ function renderLinks() {
 
             const date =
                 item.createdAt
+
                     ? new Date(
                         item.createdAt
                     ).toLocaleString()
+
                     : "-";
 
 
-            const status =
-                item.active === false
-
-                    ? `
-                        <span class="status disabled">
-                            Disabled
-                        </span>
-                      `
-
-                    : `
-                        <span class="status active">
-                            Active
-                        </span>
-                      `;
-
-
-            tr.innerHTML = `
+            row.innerHTML = `
 
                 <td>
 
-                    <div class="short">
-                        ${escapeHtml(item.id)}
-                    </div>
+                    <span class="short-id">
+
+                        ${escapeHtml(
+                            item.id
+                        )}
+
+                    </span>
 
                 </td>
 
@@ -1646,21 +1941,47 @@ function renderLinks() {
 
                     <div
                         class="destination"
-                        title="${escapeHtml(item.url || "")}"
+                        title="${escapeHtml(
+                            item.url
+                        )}"
                     >
-                        ${escapeHtml(item.url || "-")}
+
+                        ${escapeHtml(
+                            item.url
+                        )}
+
                     </div>
 
                 </td>
 
 
                 <td>
-                    ${status}
+
+                    ${
+                        item.active
+
+                        ?
+
+                        `<span
+                            class="status status-active"
+                        >
+                            Active
+                        </span>`
+
+                        :
+
+                        `<span
+                            class="status status-disabled"
+                        >
+                            Disabled
+                        </span>`
+                    }
+
                 </td>
 
 
                 <td>
-                    ${Number(item.clicks || 0)}
+                    ${item.clicks}
                 </td>
 
 
@@ -1673,9 +1994,12 @@ function renderLinks() {
 
                     <div class="actions">
 
+
                         <button
-                            class="btn-secondary"
-                            data-copy="${item.id}"
+                            class="btn btn-secondary"
+                            data-copy="${escapeHtml(
+                                item.id
+                            )}"
                         >
                             Copy
                         </button>
@@ -1683,26 +2007,33 @@ function renderLinks() {
 
                         <button
                             class="${
-                                item.active === false
-                                ? "btn-success"
-                                : "btn-danger"
+                                item.active
+                                ? "btn btn-danger"
+                                : "btn btn-success"
                             }"
-                            data-toggle="${item.id}"
+                            data-toggle="${escapeHtml(
+                                item.id
+                            )}"
                         >
+
                             ${
-                                item.active === false
-                                ? "Enable"
-                                : "Disable"
+                                item.active
+                                ? "Disable"
+                                : "Enable"
                             }
+
                         </button>
 
 
                         <button
-                            class="btn-danger"
-                            data-delete="${item.id}"
+                            class="btn btn-danger"
+                            data-delete="${escapeHtml(
+                                item.id
+                            )}"
                         >
                             Delete
                         </button>
+
 
                     </div>
 
@@ -1712,7 +2043,7 @@ function renderLinks() {
 
 
             tbody.appendChild(
-                tr
+                row
             );
 
         }
@@ -1720,7 +2051,7 @@ function renderLinks() {
 
 
     /*
-     * Copy buttons
+     * Copy
      */
 
     tbody
@@ -1732,7 +2063,7 @@ function renderLinks() {
 
                 button.addEventListener(
                     "click",
-                    () => {
+                    async () => {
 
                         const id =
                             button.dataset.copy;
@@ -1744,8 +2075,13 @@ function renderLinks() {
                             id;
 
 
-                        navigator.clipboard
-                            .writeText(url);
+                        await copyText(
+                            url
+                        );
+
+
+                        const old =
+                            button.textContent;
 
 
                         button.textContent =
@@ -1756,7 +2092,7 @@ function renderLinks() {
                             () => {
 
                                 button.textContent =
-                                    "Copy";
+                                    old;
 
                             },
                             1500
@@ -1770,7 +2106,7 @@ function renderLinks() {
 
 
     /*
-     * Toggle buttons
+     * Toggle
      */
 
     tbody
@@ -1812,17 +2148,14 @@ function renderLinks() {
                                 {
 
                                     active:
-                                        item.active === false
-
-                                            ? true
-                                            : false
+                                        !item.active
 
                                 }
 
                             );
 
 
-                            loadLinks();
+                            await loadLinks();
 
 
                         } catch (error) {
@@ -1845,7 +2178,7 @@ function renderLinks() {
 
 
     /*
-     * Delete buttons
+     * Delete
      */
 
     tbody
@@ -1863,16 +2196,14 @@ function renderLinks() {
                             button.dataset.delete;
 
 
-                        const confirmDelete =
-                            confirm(
-                                "Delete this short link?"
-                            );
-
-
                         if (
-                            !confirmDelete
+                            !confirm(
+                                "Are you sure you want to delete this link?"
+                            )
                         ) {
+
                             return;
+
                         }
 
 
@@ -1889,7 +2220,7 @@ function renderLinks() {
                             );
 
 
-                            loadLinks();
+                            await loadLinks();
 
 
                         } catch (error) {
@@ -1918,7 +2249,9 @@ function renderLinks() {
 // ==================================================
 
 document
-    .getElementById("search")
+    .getElementById(
+        "search"
+    )
     .addEventListener(
         "input",
         renderLinks
@@ -1926,28 +2259,102 @@ document
 
 
 // ==================================================
+// REFRESH
+// ==================================================
+
+document
+    .getElementById(
+        "refreshBtn"
+    )
+    .addEventListener(
+        "click",
+        loadLinks
+    );
+
+
+// ==================================================
+// COPY HELPER
+// ==================================================
+
+async function copyText(
+    text
+) {
+
+    try {
+
+        await navigator
+            .clipboard
+            .writeText(text);
+
+    } catch {
+
+        const textarea =
+            document.createElement(
+                "textarea"
+            );
+
+
+        textarea.value =
+            text;
+
+
+        textarea.style.position =
+            "fixed";
+
+        textarea.style.opacity =
+            "0";
+
+
+        document.body.appendChild(
+            textarea
+        );
+
+
+        textarea.select();
+
+
+        document.execCommand(
+            "copy"
+        );
+
+
+        textarea.remove();
+
+    }
+
+}
+
+
+// ==================================================
 // ESCAPE HTML
 // ==================================================
 
-function escapeHtml(value) {
+function escapeHtml(
+    value
+) {
 
     return String(value)
+
         .replace(
             /&/g,
             "&amp;"
         )
+
         .replace(
             /</g,
             "&lt;"
         )
+
         .replace(
             />/g,
             "&gt;"
         )
+
         .replace(
             /"/g,
             "&quot;"
         )
+
         .replace(
             /'/g,
             "&#039;"
