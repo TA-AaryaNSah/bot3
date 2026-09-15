@@ -3,150 +3,470 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <title>Short Link Generator</title>
+<title>ASVM Link Manager</title>
 
-    <style>
+<style>
 
-        * {
-            box-sizing: border-box;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            background: #0b0d12;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
+body {
+    margin: 0;
+    min-height: 100vh;
 
-        .container {
-            width: 100%;
-            max-width: 550px;
-            padding: 30px;
-            background: #151820;
-            border: 1px solid #272c36;
-            border-radius: 20px;
-        }
+    background: #0b0d12;
+    color: #fff;
 
-        h1 {
-            margin: 0 0 8px;
-            font-size: 26px;
-        }
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
 
-        .subtitle {
-            margin-bottom: 25px;
-            color: #8f96a3;
-            font-size: 14px;
-        }
+button,
+input {
+    font-family: inherit;
+}
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 600;
-        }
+.container {
+    width: 100%;
+    max-width: 1100px;
 
-        input {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #303541;
-            border-radius: 10px;
-            background: #0e1015;
-            color: white;
-            outline: none;
-            font-size: 14px;
-        }
+    margin: auto;
 
-        input:focus {
-            border-color: #666;
-        }
+    padding: 25px;
+}
 
-        .generate {
-            width: 100%;
-            margin-top: 15px;
-            padding: 14px;
-            border: 0;
-            border-radius: 10px;
-            background: white;
-            color: black;
-            font-size: 15px;
-            font-weight: bold;
-            cursor: pointer;
-        }
 
-        .generate:disabled {
-            opacity: .5;
-            cursor: not-allowed;
-        }
+/* ============================= */
+/* HEADER */
+/* ============================= */
 
-        .loading {
-            display: none;
-            margin-top: 15px;
-            text-align: center;
-            color: #999;
-            font-size: 13px;
-        }
+.header {
+    display: flex;
 
-        .result {
-            display: none;
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid #292e38;
-        }
+    align-items: center;
+    justify-content: space-between;
 
-        .short-box {
-            display: flex;
-            gap: 10px;
-        }
+    gap: 15px;
 
-        .short-box input {
-            flex: 1;
-        }
+    margin-bottom: 25px;
+}
 
-        .copy {
-            width: 100px;
-            border: 0;
-            border-radius: 10px;
-            background: white;
-            color: black;
-            font-weight: bold;
-            cursor: pointer;
-        }
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+}
 
-        .success {
-            display: none;
-            margin-top: 10px;
-            color: #70df70;
-            font-size: 13px;
-        }
+.logout {
+    width: auto;
 
-        @media(max-width: 500px) {
+    padding: 9px 15px;
 
-            .container {
-                padding: 22px;
-            }
+    background: #242833;
+    color: #fff;
 
-            .short-box {
-                flex-direction: column;
-            }
+    border: 1px solid #343946;
 
-            .copy {
-                width: 100%;
-                padding: 13px;
-            }
+    border-radius: 9px;
 
-        }
+    cursor: pointer;
+}
 
-    </style>
+
+/* ============================= */
+/* CARD */
+/* ============================= */
+
+.card {
+    background: #151820;
+
+    border: 1px solid #272c36;
+
+    border-radius: 16px;
+
+    padding: 22px;
+
+    margin-bottom: 20px;
+}
+
+.card-title {
+    margin: 0 0 18px;
+
+    font-size: 18px;
+}
+
+
+/* ============================= */
+/* LOGIN */
+/* ============================= */
+
+#loginPage {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 420px;
+
+    background: #151820;
+
+    border: 1px solid #272c36;
+
+    border-radius: 18px;
+
+    padding: 30px;
+}
+
+.login-title {
+    margin: 0 0 8px;
+
+    font-size: 26px;
+}
+
+.login-subtitle {
+    margin: 0 0 25px;
+
+    color: #8f96a3;
+
+    font-size: 14px;
+}
+
+
+/* ============================= */
+/* FORM */
+/* ============================= */
+
+.group {
+    margin-bottom: 16px;
+}
+
+label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    background: #0e1015;
+
+    color: #fff;
+
+    border: 1px solid #303541;
+
+    border-radius: 9px;
+
+    outline: none;
+}
+
+input:focus {
+    border-color: #666;
+}
+
+
+/* ============================= */
+/* BUTTON */
+/* ============================= */
+
+.btn {
+    border: 0;
+
+    border-radius: 9px;
+
+    padding: 12px 16px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+}
+
+.btn-primary {
+    width: 100%;
+
+    background: #fff;
+    color: #000;
+}
+
+.btn-danger {
+    background: #432126;
+    color: #ff9da7;
+}
+
+.btn-success {
+    background: #183b29;
+    color: #83e6a7;
+}
+
+.btn-secondary {
+    background: #242833;
+    color: #fff;
+}
+
+
+/* ============================= */
+/* ERROR */
+/* ============================= */
+
+.error {
+    display: none;
+
+    margin-top: 12px;
+
+    color: #ff7777;
+
+    font-size: 13px;
+}
+
+
+/* ============================= */
+/* GENERATOR */
+/* ============================= */
+
+.generator {
+    display: grid;
+
+    grid-template-columns: 1fr auto;
+
+    gap: 10px;
+}
+
+.generator .btn {
+    min-width: 150px;
+}
+
+
+/* ============================= */
+/* STATS */
+/* ============================= */
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 12px;
+
+    margin-bottom: 20px;
+}
+
+.stat {
+    background: #151820;
+
+    border: 1px solid #272c36;
+
+    border-radius: 14px;
+
+    padding: 18px;
+}
+
+.stat-name {
+    color: #8f96a3;
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    font-size: 25px;
+
+    font-weight: 700;
+}
+
+
+/* ============================= */
+/* TABLE */
+/* ============================= */
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 760px;
+}
+
+th,
+td {
+    text-align: left;
+
+    padding: 13px 10px;
+
+    border-bottom:
+        1px solid #272c36;
+
+    font-size: 13px;
+}
+
+th {
+    color: #8f96a3;
+
+    font-weight: 600;
+}
+
+.destination {
+    max-width: 260px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+}
+
+.short {
+    color: #9fc5ff;
+
+    word-break: break-all;
+}
+
+.status {
+    display: inline-block;
+
+    padding: 5px 9px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+}
+
+.active {
+    background: #173b27;
+
+    color: #75e39d;
+}
+
+.disabled {
+    background: #432126;
+
+    color: #ff9da7;
+}
+
+.actions {
+    display: flex;
+
+    gap: 6px;
+}
+
+.actions button {
+    padding: 7px 9px;
+
+    border-radius: 7px;
+
+    border: 0;
+
+    cursor: pointer;
+
+    font-size: 11px;
+}
+
+
+/* ============================= */
+/* GENERATED */
+/* ============================= */
+
+.generated {
+    display: none;
+
+    margin-top: 18px;
+
+    padding: 15px;
+
+    background: #0e1015;
+
+    border: 1px solid #303541;
+
+    border-radius: 10px;
+}
+
+.generated input {
+    margin-bottom: 10px;
+}
+
+.success {
+    display: none;
+
+    margin-top: 8px;
+
+    color: #70df70;
+
+    font-size: 13px;
+}
+
+
+/* ============================= */
+/* HIDDEN */
+/* ============================= */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* ============================= */
+/* MOBILE */
+/* ============================= */
+
+@media(max-width: 750px) {
+
+    .stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .generator {
+        grid-template-columns: 1fr;
+    }
+
+    .generator .btn {
+        width: 100%;
+    }
+
+}
+
+@media(max-width: 450px) {
+
+    .container {
+        padding: 15px;
+    }
+
+    .card {
+        padding: 17px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+</style>
 
 </head>
 
@@ -154,100 +474,379 @@
 <body>
 
 
-<div class="container">
+<!-- ================================================= -->
+<!-- LOGIN PAGE -->
+<!-- ================================================= -->
 
-    <h1>Short Link Generator</h1>
+<div id="loginPage">
 
-    <div class="subtitle">
-        Create a short redirect link
-    </div>
+    <div class="login-box">
 
+        <h1 class="login-title">
+            ASVM Admin
+        </h1>
 
-    <label for="mainUrl">
-        Main URL
-    </label>
-
-
-    <input
-        type="url"
-        id="mainUrl"
-        placeholder="https://example.com/page"
-        autocomplete="off"
-    >
+        <p class="login-subtitle">
+            Sign in to manage your short links.
+        </p>
 
 
-    <button
-        class="generate"
-        id="generate"
-    >
-        Generate Short Link
-    </button>
+        <div class="group">
 
-
-    <div
-        class="loading"
-        id="loading"
-    >
-        Creating short link...
-    </div>
-
-
-    <div
-        class="result"
-        id="result"
-    >
-
-        <label>
-            Short Link
-        </label>
-
-
-        <div class="short-box">
+            <label>
+                Email
+            </label>
 
             <input
-                type="text"
-                id="shortUrl"
-                readonly
+                type="email"
+                id="email"
+                placeholder="admin@example.com"
+                autocomplete="email"
             >
-
-            <button
-                class="copy"
-                id="copy"
-            >
-                Copy
-            </button>
 
         </div>
+
+
+        <div class="group">
+
+            <label>
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                autocomplete="current-password"
+            >
+
+        </div>
+
+
+        <button
+            class="btn btn-primary"
+            id="loginBtn"
+        >
+            Login
+        </button>
 
 
         <div
-            class="success"
-            id="success"
-        >
-            Link copied successfully!
-        </div>
+            class="error"
+            id="loginError"
+        ></div>
 
     </div>
 
 </div>
 
 
+
+<!-- ================================================= -->
+<!-- ADMIN PAGE -->
+<!-- ================================================= -->
+
+<div
+    id="adminPage"
+    class="hidden"
+>
+
+
+<div class="container">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="logo">
+            ASVM Link Manager
+        </div>
+
+        <button
+            class="logout"
+            id="logoutBtn"
+        >
+            Logout
+        </button>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- GENERATOR -->
+    <!-- ================================================= -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            Create Short Link
+        </h2>
+
+
+        <div class="generator">
+
+            <input
+                type="url"
+                id="mainUrl"
+                placeholder="https://example.com/page"
+            >
+
+
+            <button
+                class="btn btn-primary"
+                id="generateBtn"
+            >
+                Generate
+            </button>
+
+        </div>
+
+
+        <div
+            class="error"
+            id="generateError"
+        ></div>
+
+
+        <!-- GENERATED LINK -->
+
+        <div
+            class="generated"
+            id="generated"
+        >
+
+            <label>
+                Short Link
+            </label>
+
+
+            <input
+                type="text"
+                id="generatedUrl"
+                readonly
+            >
+
+
+            <button
+                class="btn btn-secondary"
+                id="copyGenerated"
+            >
+                Copy Link
+            </button>
+
+
+            <div
+                class="success"
+                id="copySuccess"
+            >
+                Link copied successfully.
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- STATS -->
+    <!-- ================================================= -->
+
+    <div class="stats">
+
+
+        <div class="stat">
+
+            <div class="stat-name">
+                Total Links
+            </div>
+
+            <div
+                class="stat-value"
+                id="totalLinks"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-name">
+                Active
+            </div>
+
+            <div
+                class="stat-value"
+                id="activeLinks"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-name">
+                Disabled
+            </div>
+
+            <div
+                class="stat-value"
+                id="disabledLinks"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-name">
+                Total Clicks
+            </div>
+
+            <div
+                class="stat-value"
+                id="totalClicks"
+            >
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ================================================= -->
+    <!-- LINK MANAGEMENT -->
+    <!-- ================================================= -->
+
+    <div class="card">
+
+        <h2 class="card-title">
+            Link Management
+        </h2>
+
+
+        <div class="group">
+
+            <input
+                type="text"
+                id="search"
+                placeholder="Search links..."
+            >
+
+        </div>
+
+
+        <div class="table-wrap">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Short ID
+                        </th>
+
+                        <th>
+                            Destination
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Clicks
+                        </th>
+
+                        <th>
+                            Created
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="linksTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- ================================================= -->
+<!-- FIREBASE -->
+<!-- ================================================= -->
+
 <script type="module">
+
 
 import {
     initializeApp
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getAuth,
+
+    signInWithEmailAndPassword,
+
+    onAuthStateChanged,
+
+    signOut
+
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
 
 import {
     getDatabase,
+
     ref,
-    set
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+    get,
+
+    set,
+
+    update,
+
+    remove
+
+} from
+"https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 
-// ==========================================
+
+// ==================================================
 // FIREBASE CONFIG
-// ==========================================
+// ==================================================
 
 const firebaseConfig = {
 
@@ -278,32 +877,193 @@ const firebaseConfig = {
 };
 
 
-// Initialize Firebase
 
 const app =
-    initializeApp(firebaseConfig);
+    initializeApp(
+        firebaseConfig
+    );
+
+
+const auth =
+    getAuth(app);
+
 
 const db =
     getDatabase(app);
 
 
-// ==========================================
-// GENERATE RANDOM SHORT ID
-// ==========================================
 
-function generateShortId(length = 7) {
+// ==================================================
+// DOM
+// ==================================================
+
+const loginPage =
+    document.getElementById(
+        "loginPage"
+    );
+
+
+const adminPage =
+    document.getElementById(
+        "adminPage"
+    );
+
+
+const loginError =
+    document.getElementById(
+        "loginError"
+    );
+
+
+const generateError =
+    document.getElementById(
+        "generateError"
+    );
+
+
+// ==================================================
+// AUTH STATE
+// ==================================================
+
+onAuthStateChanged(
+    auth,
+    user => {
+
+        if (user) {
+
+            loginPage.classList.add(
+                "hidden"
+            );
+
+            adminPage.classList.remove(
+                "hidden"
+            );
+
+            loadLinks();
+
+        } else {
+
+            loginPage.classList.remove(
+                "hidden"
+            );
+
+            adminPage.classList.add(
+                "hidden"
+            );
+
+        }
+
+    }
+);
+
+
+// ==================================================
+// LOGIN
+// ==================================================
+
+document
+    .getElementById("loginBtn")
+    .addEventListener(
+        "click",
+        async () => {
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim();
+
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            loginError.style.display =
+                "none";
+
+
+            if (!email || !password) {
+
+                showLoginError(
+                    "Enter email and password."
+                );
+
+                return;
+            }
+
+
+            try {
+
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+            } catch (error) {
+
+                console.error(error);
+
+                showLoginError(
+                    "Invalid email or password."
+                );
+
+            }
+
+        }
+    );
+
+
+function showLoginError(message) {
+
+    loginError.textContent =
+        message;
+
+    loginError.style.display =
+        "block";
+
+}
+
+
+// ==================================================
+// LOGOUT
+// ==================================================
+
+document
+    .getElementById("logoutBtn")
+    .addEventListener(
+        "click",
+        async () => {
+
+            await signOut(auth);
+
+        }
+    );
+
+
+// ==================================================
+// GENERATE SHORT ID
+// ==================================================
+
+function generateId(length = 7) {
 
     const chars =
         "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
 
-    const randomValues =
+
+    const values =
         new Uint32Array(length);
 
+
     crypto.getRandomValues(
-        randomValues
+        values
     );
 
+
     let id = "";
+
 
     for (
         let i = 0;
@@ -313,69 +1073,73 @@ function generateShortId(length = 7) {
 
         id +=
             chars[
-                randomValues[i] %
+                values[i] %
                 chars.length
             ];
 
     }
 
+
     return id;
+
 }
 
 
-// ==========================================
-// GENERATE SHORT LINK
-// ==========================================
+// ==================================================
+// CREATE SHORT LINK
+// ==================================================
 
 document
-    .getElementById("generate")
+    .getElementById("generateBtn")
     .addEventListener(
         "click",
-        async function () {
+        async () => {
 
-            const mainUrl =
+            const url =
                 document
                     .getElementById("mainUrl")
                     .value
                     .trim();
 
 
-            if (!mainUrl) {
+            generateError.style.display =
+                "none";
 
-                alert(
-                    "Please enter the main URL."
+
+            if (!url) {
+
+                showGenerateError(
+                    "Enter a URL."
                 );
 
                 return;
             }
 
 
-            let parsedUrl;
+            let parsed;
 
 
             try {
 
-                parsedUrl =
-                    new URL(mainUrl);
+                parsed =
+                    new URL(url);
 
             } catch {
 
-                alert(
-                    "Please enter a valid URL."
+                showGenerateError(
+                    "Invalid URL."
                 );
 
                 return;
             }
 
 
-            // Only HTTP / HTTPS
-
             if (
-                parsedUrl.protocol !== "https:" &&
-                parsedUrl.protocol !== "http:"
+                parsed.protocol !== "http:" &&
+                parsed.protocol !== "https:"
             ) {
 
-                alert(
+                showGenerateError(
                     "Only HTTP and HTTPS URLs are allowed."
                 );
 
@@ -383,142 +1147,190 @@ document
             }
 
 
-            const generateButton =
+            const button =
                 document
-                    .getElementById("generate");
+                    .getElementById(
+                        "generateBtn"
+                    );
 
 
-            const loading =
-                document
-                    .getElementById("loading");
-
-
-            const result =
-                document
-                    .getElementById("result");
-
-
-            const output =
-                document
-                    .getElementById("shortUrl");
-
-
-            generateButton.disabled =
+            button.disabled =
                 true;
 
-            loading.style.display =
-                "block";
+
+            button.textContent =
+                "Creating...";
 
 
             try {
 
-                let shortId;
-
-                let created = false;
+                let id;
 
 
                 /*
-                 * Generate a unique ID.
+                 * Find unique ID
                  */
 
-                while (!created) {
+                for (
+                    let i = 0;
+                    i < 10;
+                    i++
+                ) {
 
-                    shortId =
-                        generateShortId(7);
+                    const possible =
+                        generateId();
 
 
-                    const linkRef =
-                        ref(
-                            db,
-                            "links/" +
-                            shortId
+                    const snapshot =
+                        await get(
+                            ref(
+                                db,
+                                "links/" +
+                                possible
+                            )
                         );
 
 
-                    /*
-                     * Save only the destination URL.
-                     */
+                    if (!snapshot.exists()) {
 
-                    await set(
-                        linkRef,
-                        {
-                            url:
-                                parsedUrl.href,
+                        id =
+                            possible;
 
-                            active:
-                                true,
+                        break;
 
-                            createdAt:
-                                Date.now()
-                        }
+                    }
+
+                }
+
+
+                if (!id) {
+
+                    throw new Error(
+                        "Could not create unique ID."
                     );
-
-
-                    created = true;
 
                 }
 
 
                 /*
-                 * Build short URL.
-                 *
-                 * Example:
-                 *
-                 * https://domain.com/index.html?l=Ab72KxP
+                 * Save
                  */
 
-                const shortLink =
-                    window.location.origin +
-                    "/index.html?l=" +
-                    shortId;
+                await set(
+
+                    ref(
+                        db,
+                        "links/" +
+                        id
+                    ),
+
+                    {
+
+                        url:
+                            parsed.href,
+
+                        active:
+                            true,
+
+                        clicks:
+                            0,
+
+                        createdAt:
+                            Date.now()
+
+                    }
+
+                );
 
 
                 /*
-                 * Show ONLY short link.
+                 * Short URL
                  */
 
-                output.value =
-                    shortLink;
+                const shortUrl =
+                    window.location.origin +
+                    "/go/" +
+                    id;
 
 
-                result.style.display =
+                document
+                    .getElementById(
+                        "generatedUrl"
+                    )
+                    .value =
+                    shortUrl;
+
+
+                document
+                    .getElementById(
+                        "generated"
+                    )
+                    .style.display =
                     "block";
+
+
+                document
+                    .getElementById(
+                        "mainUrl"
+                    )
+                    .value =
+                    "";
+
+
+                loadLinks();
 
 
             } catch (error) {
 
                 console.error(error);
 
-                alert(
-                    "Unable to create short link."
+                showGenerateError(
+                    "Unable to create link."
                 );
 
             }
 
 
-            loading.style.display =
-                "none";
-
-            generateButton.disabled =
+            button.disabled =
                 false;
+
+
+            button.textContent =
+                "Generate";
 
         }
     );
 
 
-// ==========================================
-// COPY SHORT LINK
-// ==========================================
+function showGenerateError(message) {
+
+    generateError.textContent =
+        message;
+
+    generateError.style.display =
+        "block";
+
+}
+
+
+// ==================================================
+// COPY GENERATED
+// ==================================================
 
 document
-    .getElementById("copy")
+    .getElementById(
+        "copyGenerated"
+    )
     .addEventListener(
         "click",
-        async function () {
+        async () => {
 
-            const output =
+            const value =
                 document
-                    .getElementById("shortUrl");
+                    .getElementById(
+                        "generatedUrl"
+                    )
+                    .value;
 
 
             try {
@@ -526,12 +1338,18 @@ document
                 await navigator
                     .clipboard
                     .writeText(
-                        output.value
+                        value
                     );
 
             } catch {
 
-                output.select();
+                const input =
+                    document
+                        .getElementById(
+                            "generatedUrl"
+                        );
+
+                input.select();
 
                 document.execCommand(
                     "copy"
@@ -542,7 +1360,9 @@ document
 
             const success =
                 document
-                    .getElementById("success");
+                    .getElementById(
+                        "copySuccess"
+                    );
 
 
             success.style.display =
@@ -550,7 +1370,7 @@ document
 
 
             setTimeout(
-                function () {
+                () => {
 
                     success.style.display =
                         "none";
@@ -561,6 +1381,579 @@ document
 
         }
     );
+
+
+// ==================================================
+// STORE LINKS
+// ==================================================
+
+let allLinks = [];
+
+
+// ==================================================
+// LOAD LINKS
+// ==================================================
+
+async function loadLinks() {
+
+    try {
+
+        const snapshot =
+            await get(
+                ref(db, "links")
+            );
+
+
+        allLinks = [];
+
+
+        if (snapshot.exists()) {
+
+            const data =
+                snapshot.val();
+
+
+            Object
+                .entries(data)
+                .forEach(
+                    ([id, value]) => {
+
+                        allLinks.push({
+
+                            id,
+
+                            ...value
+
+                        });
+
+                    }
+                );
+
+        }
+
+
+        allLinks.sort(
+            (a, b) =>
+                (b.createdAt || 0) -
+                (a.createdAt || 0)
+        );
+
+
+        updateStats();
+
+        renderLinks();
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "Unable to load links."
+        );
+
+    }
+
+}
+
+
+// ==================================================
+// STATS
+// ==================================================
+
+function updateStats() {
+
+    const total =
+        allLinks.length;
+
+
+    const active =
+        allLinks.filter(
+            item =>
+                item.active !== false
+        ).length;
+
+
+    const disabled =
+        allLinks.filter(
+            item =>
+                item.active === false
+        ).length;
+
+
+    const clicks =
+        allLinks.reduce(
+            (sum, item) =>
+                sum +
+                Number(
+                    item.clicks || 0
+                ),
+            0
+        );
+
+
+    document
+        .getElementById(
+            "totalLinks"
+        )
+        .textContent =
+        total;
+
+
+    document
+        .getElementById(
+            "activeLinks"
+        )
+        .textContent =
+        active;
+
+
+    document
+        .getElementById(
+            "disabledLinks"
+        )
+        .textContent =
+        disabled;
+
+
+    document
+        .getElementById(
+            "totalClicks"
+        )
+        .textContent =
+        clicks;
+
+}
+
+
+// ==================================================
+// RENDER
+// ==================================================
+
+function renderLinks() {
+
+    const tbody =
+        document
+            .getElementById(
+                "linksTable"
+            );
+
+
+    const search =
+        document
+            .getElementById(
+                "search"
+            )
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    tbody.innerHTML = "";
+
+
+    const filtered =
+        allLinks.filter(
+            item => {
+
+                const id =
+                    item.id
+                    .toLowerCase();
+
+
+                const url =
+                    String(
+                        item.url || ""
+                    )
+                    .toLowerCase();
+
+
+                return (
+                    id.includes(search) ||
+                    url.includes(search)
+                );
+
+            }
+        );
+
+
+    if (!filtered.length) {
+
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="6"
+                    style="text-align:center;color:#888;padding:30px">
+                    No links found.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+
+    filtered.forEach(
+        item => {
+
+            const tr =
+                document.createElement(
+                    "tr"
+                );
+
+
+            const shortUrl =
+                window.location.origin +
+                "/go/" +
+                item.id;
+
+
+            const date =
+                item.createdAt
+                    ? new Date(
+                        item.createdAt
+                    ).toLocaleString()
+                    : "-";
+
+
+            const status =
+                item.active === false
+
+                    ? `
+                        <span class="status disabled">
+                            Disabled
+                        </span>
+                      `
+
+                    : `
+                        <span class="status active">
+                            Active
+                        </span>
+                      `;
+
+
+            tr.innerHTML = `
+
+                <td>
+
+                    <div class="short">
+                        ${escapeHtml(item.id)}
+                    </div>
+
+                </td>
+
+
+                <td>
+
+                    <div
+                        class="destination"
+                        title="${escapeHtml(item.url || "")}"
+                    >
+                        ${escapeHtml(item.url || "-")}
+                    </div>
+
+                </td>
+
+
+                <td>
+                    ${status}
+                </td>
+
+
+                <td>
+                    ${Number(item.clicks || 0)}
+                </td>
+
+
+                <td>
+                    ${escapeHtml(date)}
+                </td>
+
+
+                <td>
+
+                    <div class="actions">
+
+                        <button
+                            class="btn-secondary"
+                            data-copy="${item.id}"
+                        >
+                            Copy
+                        </button>
+
+
+                        <button
+                            class="${
+                                item.active === false
+                                ? "btn-success"
+                                : "btn-danger"
+                            }"
+                            data-toggle="${item.id}"
+                        >
+                            ${
+                                item.active === false
+                                ? "Enable"
+                                : "Disable"
+                            }
+                        </button>
+
+
+                        <button
+                            class="btn-danger"
+                            data-delete="${item.id}"
+                        >
+                            Delete
+                        </button>
+
+                    </div>
+
+                </td>
+
+            `;
+
+
+            tbody.appendChild(
+                tr
+            );
+
+        }
+    );
+
+
+    /*
+     * Copy buttons
+     */
+
+    tbody
+        .querySelectorAll(
+            "[data-copy]"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const id =
+                            button.dataset.copy;
+
+
+                        const url =
+                            window.location.origin +
+                            "/go/" +
+                            id;
+
+
+                        navigator.clipboard
+                            .writeText(url);
+
+
+                        button.textContent =
+                            "Copied";
+
+
+                        setTimeout(
+                            () => {
+
+                                button.textContent =
+                                    "Copy";
+
+                            },
+                            1500
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+    /*
+     * Toggle buttons
+     */
+
+    tbody
+        .querySelectorAll(
+            "[data-toggle]"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    async () => {
+
+                        const id =
+                            button.dataset.toggle;
+
+
+                        const item =
+                            allLinks.find(
+                                x =>
+                                    x.id === id
+                            );
+
+
+                        if (!item)
+                            return;
+
+
+                        try {
+
+                            await update(
+
+                                ref(
+                                    db,
+                                    "links/" +
+                                    id
+                                ),
+
+                                {
+
+                                    active:
+                                        item.active === false
+
+                                            ? true
+                                            : false
+
+                                }
+
+                            );
+
+
+                            loadLinks();
+
+
+                        } catch (error) {
+
+                            console.error(
+                                error
+                            );
+
+                            alert(
+                                "Unable to update link."
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+    /*
+     * Delete buttons
+     */
+
+    tbody
+        .querySelectorAll(
+            "[data-delete]"
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    async () => {
+
+                        const id =
+                            button.dataset.delete;
+
+
+                        const confirmDelete =
+                            confirm(
+                                "Delete this short link?"
+                            );
+
+
+                        if (
+                            !confirmDelete
+                        ) {
+                            return;
+                        }
+
+
+                        try {
+
+                            await remove(
+
+                                ref(
+                                    db,
+                                    "links/" +
+                                    id
+                                )
+
+                            );
+
+
+                            loadLinks();
+
+
+                        } catch (error) {
+
+                            console.error(
+                                error
+                            );
+
+                            alert(
+                                "Unable to delete link."
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+}
+
+
+// ==================================================
+// SEARCH
+// ==================================================
+
+document
+    .getElementById("search")
+    .addEventListener(
+        "input",
+        renderLinks
+    );
+
+
+// ==================================================
+// ESCAPE HTML
+// ==================================================
+
+function escapeHtml(value) {
+
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
 
 </script>
 
