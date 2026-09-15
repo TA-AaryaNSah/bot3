@@ -5,13 +5,10 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    <title>ASVM Link Generator</title>
-
+    <title>Short Link Generator</title>
 
     <style>
 
@@ -22,183 +19,115 @@
         body {
             margin: 0;
             min-height: 100vh;
-            padding: 25px;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
+            padding: 20px;
             background: #0b0d12;
-
             color: white;
-
-            font-family:
-                Arial,
-                sans-serif;
+            font-family: Arial, sans-serif;
         }
-
 
         .container {
             width: 100%;
-            max-width: 650px;
-
-            background: #151820;
-
-            border:
-                1px solid #272c36;
-
-            border-radius: 20px;
-
+            max-width: 550px;
             padding: 30px;
+            background: #151820;
+            border: 1px solid #272c36;
+            border-radius: 20px;
         }
-
 
         h1 {
             margin: 0 0 8px;
-
-            font-size: 27px;
+            font-size: 26px;
         }
-
 
         .subtitle {
             margin-bottom: 25px;
-
             color: #8f96a3;
-
             font-size: 14px;
         }
-
-
-        .group {
-            margin-bottom: 18px;
-        }
-
 
         label {
             display: block;
-
             margin-bottom: 8px;
-
             font-size: 14px;
-
             font-weight: 600;
         }
 
-
-        input,
-        textarea {
+        input {
             width: 100%;
-
             padding: 14px;
-
-            border:
-                1px solid #303541;
-
+            border: 1px solid #303541;
             border-radius: 10px;
-
             background: #0e1015;
-
             color: white;
-
             outline: none;
-
             font-size: 14px;
         }
 
-
-        textarea {
-            min-height: 90px;
-
-            resize: vertical;
-        }
-
-
-        input:focus,
-        textarea:focus {
+        input:focus {
             border-color: #666;
         }
 
-
-        button {
+        .generate {
             width: 100%;
-
+            margin-top: 15px;
             padding: 14px;
-
             border: 0;
-
             border-radius: 10px;
-
             background: white;
-
             color: black;
-
-            font-weight: bold;
-
             font-size: 15px;
-
+            font-weight: bold;
             cursor: pointer;
         }
 
-
-        button:hover {
-            opacity: .9;
+        .generate:disabled {
+            opacity: .5;
+            cursor: not-allowed;
         }
-
-
-        .result {
-            display: none;
-
-            margin-top: 25px;
-
-            padding-top: 25px;
-
-            border-top:
-                1px solid #2a2e38;
-        }
-
-
-        .short-url {
-            display: flex;
-
-            gap: 10px;
-        }
-
-
-        .short-url input {
-            flex: 1;
-        }
-
-
-        .copy {
-            width: auto;
-
-            min-width: 100px;
-
-            margin: 0;
-        }
-
-
-        .success {
-            margin-top: 12px;
-
-            color: #72e072;
-
-            font-size: 13px;
-
-            display: none;
-        }
-
 
         .loading {
             display: none;
-
-            margin-top: 12px;
-
-            color: #aaa;
-
+            margin-top: 15px;
+            text-align: center;
+            color: #999;
             font-size: 13px;
         }
 
+        .result {
+            display: none;
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid #292e38;
+        }
+
+        .short-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        .short-box input {
+            flex: 1;
+        }
+
+        .copy {
+            width: 100px;
+            border: 0;
+            border-radius: 10px;
+            background: white;
+            color: black;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .success {
+            display: none;
+            margin-top: 10px;
+            color: #70df70;
+            font-size: 13px;
+        }
 
         @media(max-width: 500px) {
 
@@ -206,12 +135,13 @@
                 padding: 22px;
             }
 
-            .short-url {
+            .short-box {
                 flex-direction: column;
             }
 
             .copy {
                 width: 100%;
+                padding: 13px;
             }
 
         }
@@ -226,80 +156,30 @@
 
 <div class="container">
 
-    <h1>ASVM Link Generator</h1>
+    <h1>Short Link Generator</h1>
 
     <div class="subtitle">
-        Create a short Firebase-powered redirect link.
+        Create a short redirect link
     </div>
 
 
-    <!-- MAIN URL -->
-
-    <div class="group">
-
-        <label>
-            Main URL *
-        </label>
-
-        <input
-            type="url"
-            id="mainUrl"
-            placeholder="https://example.com/page"
-        >
-
-    </div>
+    <label for="mainUrl">
+        Main URL
+    </label>
 
 
-    <!-- TITLE -->
-
-    <div class="group">
-
-        <label>
-            Title
-        </label>
-
-        <input
-            type="text"
-            id="title"
-            placeholder="My Redirect"
-        >
-
-    </div>
+    <input
+        type="url"
+        id="mainUrl"
+        placeholder="https://example.com/page"
+        autocomplete="off"
+    >
 
 
-    <!-- DESCRIPTION -->
-
-    <div class="group">
-
-        <label>
-            Description
-        </label>
-
-        <textarea
-            id="description"
-            placeholder="Optional description"
-        ></textarea>
-
-    </div>
-
-
-    <!-- CUSTOM DATA -->
-
-    <div class="group">
-
-        <label>
-            ASVM Data
-        </label>
-
-        <textarea
-            id="asvmData"
-            placeholder='{"type":"movie","id":"12345"}'
-        ></textarea>
-
-    </div>
-
-
-    <button id="generate">
+    <button
+        class="generate"
+        id="generate"
+    >
         Generate Short Link
     </button>
 
@@ -312,19 +192,17 @@
     </div>
 
 
-    <!-- RESULT -->
-
     <div
         class="result"
         id="result"
     >
 
         <label>
-            Your Short Link
+            Short Link
         </label>
 
 
-        <div class="short-url">
+        <div class="short-box">
 
             <input
                 type="text"
@@ -346,7 +224,7 @@
             class="success"
             id="success"
         >
-            Short link copied!
+            Link copied successfully!
         </div>
 
     </div>
@@ -356,11 +234,9 @@
 
 <script type="module">
 
-
 import {
     initializeApp
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-
 
 import {
     getDatabase,
@@ -369,9 +245,9 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 
-// ====================================
-// FIREBASE
-// ====================================
+// ==========================================
+// FIREBASE CONFIG
+// ==========================================
 
 const firebaseConfig = {
 
@@ -402,287 +278,260 @@ const firebaseConfig = {
 };
 
 
+// Initialize Firebase
+
 const app =
     initializeApp(firebaseConfig);
-
 
 const db =
     getDatabase(app);
 
 
-// ====================================
-// ELEMENTS
-// ====================================
+// ==========================================
+// GENERATE RANDOM SHORT ID
+// ==========================================
 
-const generate =
-    document.getElementById("generate");
-
-const loading =
-    document.getElementById("loading");
-
-const result =
-    document.getElementById("result");
-
-const shortUrl =
-    document.getElementById("shortUrl");
-
-
-// ====================================
-// RANDOM SHORT ID
-// ====================================
-
-function generateShortId(length = 8) {
+function generateShortId(length = 7) {
 
     const chars =
         "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
 
-    let id = "";
-
-    const array =
+    const randomValues =
         new Uint32Array(length);
 
-    crypto.getRandomValues(array);
+    crypto.getRandomValues(
+        randomValues
+    );
 
+    let id = "";
 
-    for (let i = 0; i < length; i++) {
+    for (
+        let i = 0;
+        i < length;
+        i++
+    ) {
 
-        id += chars[
-            array[i] % chars.length
-        ];
+        id +=
+            chars[
+                randomValues[i] %
+                chars.length
+            ];
 
     }
 
-
     return id;
-
 }
 
 
-// ====================================
-// GENERATE
-// ====================================
+// ==========================================
+// GENERATE SHORT LINK
+// ==========================================
 
-generate.addEventListener(
-    "click",
-    async () => {
+document
+    .getElementById("generate")
+    .addEventListener(
+        "click",
+        async function () {
 
-        const mainUrl =
-            document
-                .getElementById("mainUrl")
-                .value
-                .trim();
-
-
-        const title =
-            document
-                .getElementById("title")
-                .value
-                .trim();
+            const mainUrl =
+                document
+                    .getElementById("mainUrl")
+                    .value
+                    .trim();
 
 
-        const description =
-            document
-                .getElementById("description")
-                .value
-                .trim();
-
-
-        const asvmDataRaw =
-            document
-                .getElementById("asvmData")
-                .value
-                .trim();
-
-
-        // ==========================
-        // VALIDATE URL
-        // ==========================
-
-        if (!mainUrl) {
-
-            alert(
-                "Please enter the main URL."
-            );
-
-            return;
-        }
-
-
-        let parsedUrl;
-
-        try {
-
-            parsedUrl =
-                new URL(mainUrl);
-
-        } catch {
-
-            alert(
-                "Please enter a valid URL."
-            );
-
-            return;
-        }
-
-
-        if (
-            parsedUrl.protocol !== "https:" &&
-            parsedUrl.protocol !== "http:"
-        ) {
-
-            alert(
-                "Only HTTP/HTTPS URLs are allowed."
-            );
-
-            return;
-        }
-
-
-        // ==========================
-        // ASVM DATA
-        // ==========================
-
-        let asvmData = {};
-
-
-        if (asvmDataRaw) {
-
-            try {
-
-                asvmData =
-                    JSON.parse(asvmDataRaw);
-
-            } catch {
+            if (!mainUrl) {
 
                 alert(
-                    "ASVM Data must be valid JSON."
+                    "Please enter the main URL."
                 );
 
                 return;
             }
 
-        }
+
+            let parsedUrl;
 
 
-        // ==========================
-        // LOADING
-        // ==========================
+            try {
 
-        generate.disabled = true;
+                parsedUrl =
+                    new URL(mainUrl);
 
-        loading.style.display = "block";
+            } catch {
 
+                alert(
+                    "Please enter a valid URL."
+                );
 
-        try {
-
-            // ======================
-            // CREATE RANDOM ID
-            // ======================
-
-            const id =
-                generateShortId(8);
+                return;
+            }
 
 
-            // ======================
-            // SAVE TO FIREBASE
-            // ======================
+            // Only HTTP / HTTPS
 
-            await set(
-                ref(db, "links/" + id),
-                {
+            if (
+                parsedUrl.protocol !== "https:" &&
+                parsedUrl.protocol !== "http:"
+            ) {
 
-                    url: parsedUrl.href,
+                alert(
+                    "Only HTTP and HTTPS URLs are allowed."
+                );
 
-                    title:
-                        title || "Redirect",
-
-                    description:
-                        description || "",
-
-                    asvm:
-                        asvmData,
-
-                    active: true,
-
-                    createdAt:
-                        Date.now()
-
-                }
-            );
+                return;
+            }
 
 
-            // ======================
-            // CREATE SHORT URL
-            // ======================
-
-            const base =
-                window.location.origin +
-                window.location.pathname
-                    .substring(
-                        0,
-                        window.location.pathname
-                            .lastIndexOf("/")
-                    );
+            const generateButton =
+                document
+                    .getElementById("generate");
 
 
-            const finalUrl =
-                base +
-                "/index.html?l=" +
-                id;
+            const loading =
+                document
+                    .getElementById("loading");
 
 
-            shortUrl.value =
-                finalUrl;
+            const result =
+                document
+                    .getElementById("result");
 
 
-            result.style.display =
+            const output =
+                document
+                    .getElementById("shortUrl");
+
+
+            generateButton.disabled =
+                true;
+
+            loading.style.display =
                 "block";
 
 
-        } catch (error) {
+            try {
 
-            console.error(error);
+                let shortId;
 
-            alert(
-                "Could not create short link."
-            );
+                let created = false;
+
+
+                /*
+                 * Generate a unique ID.
+                 */
+
+                while (!created) {
+
+                    shortId =
+                        generateShortId(7);
+
+
+                    const linkRef =
+                        ref(
+                            db,
+                            "links/" +
+                            shortId
+                        );
+
+
+                    /*
+                     * Save only the destination URL.
+                     */
+
+                    await set(
+                        linkRef,
+                        {
+                            url:
+                                parsedUrl.href,
+
+                            active:
+                                true,
+
+                            createdAt:
+                                Date.now()
+                        }
+                    );
+
+
+                    created = true;
+
+                }
+
+
+                /*
+                 * Build short URL.
+                 *
+                 * Example:
+                 *
+                 * https://domain.com/index.html?l=Ab72KxP
+                 */
+
+                const shortLink =
+                    window.location.origin +
+                    "/index.html?l=" +
+                    shortId;
+
+
+                /*
+                 * Show ONLY short link.
+                 */
+
+                output.value =
+                    shortLink;
+
+
+                result.style.display =
+                    "block";
+
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert(
+                    "Unable to create short link."
+                );
+
+            }
+
+
+            loading.style.display =
+                "none";
+
+            generateButton.disabled =
+                false;
 
         }
+    );
 
 
-        loading.style.display =
-            "none";
-
-        generate.disabled =
-            false;
-
-    }
-);
-
-
-// ====================================
-// COPY
-// ====================================
+// ==========================================
+// COPY SHORT LINK
+// ==========================================
 
 document
     .getElementById("copy")
     .addEventListener(
         "click",
-        async () => {
+        async function () {
 
-            const value =
-                shortUrl.value;
+            const output =
+                document
+                    .getElementById("shortUrl");
 
 
             try {
 
                 await navigator
                     .clipboard
-                    .writeText(value);
+                    .writeText(
+                        output.value
+                    );
 
             } catch {
 
-                shortUrl.select();
+                output.select();
 
                 document.execCommand(
                     "copy"
@@ -692,9 +541,8 @@ document
 
 
             const success =
-                document.getElementById(
-                    "success"
-                );
+                document
+                    .getElementById("success");
 
 
             success.style.display =
@@ -702,7 +550,7 @@ document
 
 
             setTimeout(
-                () => {
+                function () {
 
                     success.style.display =
                         "none";
@@ -718,4 +566,5 @@ document
 
 
 </body>
+
 </html>
