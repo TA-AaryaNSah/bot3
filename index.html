@@ -3,58 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Redirecting...</title>
+    <title>Please Wait</title>
 
     <style>
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
+            margin: 0;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #0f1115;
-            color: #fff;
+            background: #0b0d12;
+            color: white;
             font-family: Arial, sans-serif;
         }
 
         .box {
             width: 90%;
             max-width: 420px;
-            text-align: center;
             padding: 35px 25px;
-            background: #181b22;
+            text-align: center;
+            background: #151820;
+            border: 1px solid #252a35;
             border-radius: 18px;
         }
 
         .loader {
             width: 45px;
             height: 45px;
-            border: 4px solid #333;
-            border-top-color: #fff;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
             margin: 0 auto 20px;
-        }
-
-        h2 {
-            font-size: 22px;
-            margin-bottom: 10px;
-        }
-
-        p {
-            color: #aaa;
-            font-size: 14px;
-        }
-
-        .error {
-            display: none;
-            color: #ff6b6b;
+            border: 4px solid #30343d;
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin .8s linear infinite;
         }
 
         @keyframes spin {
@@ -62,119 +46,42 @@
                 transform: rotate(360deg);
             }
         }
+
+        h2 {
+            margin: 0 0 10px;
+        }
+
+        p {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .error {
+            display: none;
+            color: #ff6b6b;
+        }
     </style>
 </head>
 
 <body>
 
-<div class="box" id="redirectBox">
+<div class="box">
 
-    <div class="loader"></div>
+    <div class="loader" id="loader"></div>
 
-    <h2>Redirecting...</h2>
+    <h2 id="title">Please wait...</h2>
 
-    <p>Please wait...</p>
+    <p id="status">
+        Preparing your link
+    </p>
 
     <p class="error" id="error">
-        Invalid or expired redirect link.
+        This link is invalid or unavailable.
     </p>
 
 </div>
 
-<script>
-(function () {
-
-    const params = new URLSearchParams(window.location.search);
-    const encryptedLink = params.get("link");
-
-    /*
-     * Direct visit:
-     *
-     * https://example.com/index.html
-     *
-     * No ?link= parameter = no redirect.
-     */
-    if (!encryptedLink) {
-        document.getElementById("redirectBox").innerHTML = `
-            <h2>Welcome</h2>
-            <p>No redirect link was provided.</p>
-        `;
-        return;
-    }
-
-    /*
-     * Decode Base64 URL
-     */
-    function decodeLink(encoded) {
-
-        try {
-
-            // Restore Base64 characters
-            let base64 = encoded
-                .replace(/-/g, "+")
-                .replace(/_/g, "/");
-
-            while (base64.length % 4) {
-                base64 += "=";
-            }
-
-            const binary = atob(base64);
-
-            const bytes = new Uint8Array(binary.length);
-
-            for (let i = 0; i < binary.length; i++) {
-                bytes[i] = binary.charCodeAt(i);
-            }
-
-            return new TextDecoder().decode(bytes);
-
-        } catch (e) {
-            return null;
-        }
-    }
-
-    const mainLink = decodeLink(encryptedLink);
-
-    /*
-     * Basic URL validation
-     */
-    if (!mainLink) {
-        document.querySelector(".loader").style.display = "none";
-        document.querySelector("h2").style.display = "none";
-        document.querySelector("p").style.display = "none";
-        document.getElementById("error").style.display = "block";
-        return;
-    }
-
-    try {
-
-        const url = new URL(mainLink);
-
-        /*
-         * Only allow HTTP/HTTPS
-         */
-        if (url.protocol !== "http:" && url.protocol !== "https:") {
-            throw new Error("Invalid protocol");
-        }
-
-        /*
-         * Small delay before redirect
-         */
-        setTimeout(() => {
-            window.location.replace(url.href);
-        }, 1200);
-
-    } catch (e) {
-
-        document.querySelector(".loader").style.display = "none";
-        document.querySelector("h2").style.display = "none";
-        document.querySelector("p").style.display = "none";
-        document.getElementById("error").style.display = "block";
-
-    }
-
-})();
-</script>
+<script type="module" src="js.js"></script>
 
 </body>
 </html>
