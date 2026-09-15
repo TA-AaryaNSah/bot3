@@ -1,87 +1,519 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Please Wait</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Short Link Generator</title>
+
 
     <style>
+
         * {
             box-sizing: border-box;
         }
 
         body {
             margin: 0;
+
             min-height: 100vh;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
+            padding: 20px;
+
             background: #0b0d12;
+
             color: white;
+
             font-family: Arial, sans-serif;
         }
 
-        .box {
-            width: 90%;
-            max-width: 420px;
-            padding: 35px 25px;
-            text-align: center;
+
+        .container {
+            width: 100%;
+
+            max-width: 520px;
+
+            padding: 30px;
+
             background: #151820;
-            border: 1px solid #252a35;
-            border-radius: 18px;
+
+            border:
+                1px solid #272c36;
+
+            border-radius: 20px;
         }
 
-        .loader {
-            width: 45px;
-            height: 45px;
-            margin: 0 auto 20px;
-            border: 4px solid #30343d;
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin .8s linear infinite;
+
+        h1 {
+            margin: 0 0 8px;
+
+            font-size: 26px;
         }
 
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
 
-        h2 {
-            margin: 0 0 10px;
-        }
+        .subtitle {
+            margin-bottom: 25px;
 
-        p {
-            color: #999;
+            color: #8f96a3;
+
             font-size: 14px;
         }
 
-        .error {
-            display: none;
-            color: #ff6b6b;
+
+        label {
+            display: block;
+
+            margin-bottom: 8px;
+
+            font-size: 14px;
+
+            font-weight: 600;
         }
+
+
+        input {
+            width: 100%;
+
+            padding: 14px;
+
+            border:
+                1px solid #303541;
+
+            border-radius: 10px;
+
+            background: #0e1015;
+
+            color: white;
+
+            outline: none;
+
+            font-size: 14px;
+        }
+
+
+        input:focus {
+            border-color: #777;
+        }
+
+
+        .generate {
+            width: 100%;
+
+            margin-top: 15px;
+
+            padding: 14px;
+
+            border: 0;
+
+            border-radius: 10px;
+
+            background: white;
+
+            color: black;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .generate:disabled {
+            opacity: .5;
+
+            cursor: not-allowed;
+        }
+
+
+        .loading {
+            display: none;
+
+            margin-top: 14px;
+
+            text-align: center;
+
+            color: #999;
+
+            font-size: 13px;
+        }
+
+
+        .result {
+            display: none;
+
+            margin-top: 25px;
+
+            padding-top: 25px;
+
+            border-top:
+                1px solid #292e38;
+        }
+
+
+        .short-box {
+            display: flex;
+
+            gap: 10px;
+        }
+
+
+        .short-box input {
+            flex: 1;
+        }
+
+
+        .copy {
+            width: 100px;
+
+            border: 0;
+
+            border-radius: 10px;
+
+            background: white;
+
+            color: black;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        .success {
+            display: none;
+
+            margin-top: 10px;
+
+            color: #70df70;
+
+            font-size: 13px;
+        }
+
+
+        @media(max-width:500px) {
+
+            .container {
+                padding: 22px;
+            }
+
+            .short-box {
+                flex-direction: column;
+            }
+
+            .copy {
+                width: 100%;
+
+                padding: 13px;
+            }
+
+        }
+
     </style>
+
 </head>
+
 
 <body>
 
-<div class="box">
 
-    <div class="loader" id="loader"></div>
+<div class="container">
 
-    <h2 id="title">Please wait...</h2>
+    <h1>
+        Short Link Generator
+    </h1>
 
-    <p id="status">
-        Preparing your link
-    </p>
 
-    <p class="error" id="error">
-        This link is invalid or unavailable.
-    </p>
+    <div class="subtitle">
+        Create a short redirect link
+    </div>
+
+
+    <label for="mainUrl">
+        Main URL
+    </label>
+
+
+    <input
+        id="mainUrl"
+        type="url"
+        placeholder="https://example.com/page"
+        autocomplete="off"
+    >
+
+
+    <button
+        class="generate"
+        id="generate"
+    >
+        Generate Short Link
+    </button>
+
+
+    <div
+        class="loading"
+        id="loading"
+    >
+        Creating short link...
+    </div>
+
+
+    <div
+        class="result"
+        id="result"
+    >
+
+        <label>
+            Short Link
+        </label>
+
+
+        <div class="short-box">
+
+            <input
+                id="shortUrl"
+                type="text"
+                readonly
+            >
+
+
+            <button
+                class="copy"
+                id="copy"
+            >
+                Copy
+            </button>
+
+        </div>
+
+
+        <div
+            class="success"
+            id="success"
+        >
+            Link copied successfully!
+        </div>
+
+    </div>
 
 </div>
 
-<script type="module" src="js.js"></script>
+
+<script>
+
+const generate =
+    document.getElementById("generate");
+
+
+const loading =
+    document.getElementById("loading");
+
+
+const result =
+    document.getElementById("result");
+
+
+const output =
+    document.getElementById("shortUrl");
+
+
+// ========================================
+// GENERATE
+// ========================================
+
+generate.addEventListener(
+    "click",
+    async () => {
+
+        const url =
+            document
+                .getElementById("mainUrl")
+                .value
+                .trim();
+
+
+        if (!url) {
+
+            alert(
+                "Please enter a URL."
+            );
+
+            return;
+        }
+
+
+        try {
+
+            const parsed =
+                new URL(url);
+
+
+            if (
+                parsed.protocol !== "http:" &&
+                parsed.protocol !== "https:"
+            ) {
+
+                throw new Error();
+
+            }
+
+        } catch {
+
+            alert(
+                "Please enter a valid HTTP/HTTPS URL."
+            );
+
+            return;
+        }
+
+
+        generate.disabled =
+            true;
+
+        loading.style.display =
+            "block";
+
+
+        result.style.display =
+            "none";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/create",
+                    {
+
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify({
+                                url
+                            })
+
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.error ||
+                    "Unable to create link."
+                );
+
+            }
+
+
+            output.value =
+                data.url;
+
+
+            result.style.display =
+                "block";
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert(
+                error.message ||
+                "Something went wrong."
+            );
+
+        }
+
+
+        loading.style.display =
+            "none";
+
+        generate.disabled =
+            false;
+
+    }
+);
+
+
+// ========================================
+// COPY
+// ========================================
+
+document
+    .getElementById("copy")
+    .addEventListener(
+        "click",
+        async () => {
+
+            const value =
+                output.value;
+
+
+            try {
+
+                await navigator
+                    .clipboard
+                    .writeText(value);
+
+            } catch {
+
+                output.select();
+
+                document.execCommand(
+                    "copy"
+                );
+
+            }
+
+
+            const success =
+                document.getElementById(
+                    "success"
+                );
+
+
+            success.style.display =
+                "block";
+
+
+            setTimeout(
+                () => {
+
+                    success.style.display =
+                        "none";
+
+                },
+                2000
+            );
+
+        }
+    );
+
+</script>
+
 
 </body>
+
 </html>
