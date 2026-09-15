@@ -1,163 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Redirect URL Generator</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>ASVM Link Generator</title>
+
 
     <style>
 
         * {
             box-sizing: border-box;
-            margin: 0;
-            padding: 0;
         }
 
         body {
+            margin: 0;
             min-height: 100vh;
+            padding: 25px;
+
             display: flex;
-            justify-content: center;
             align-items: center;
-            padding: 20px;
-            background: #0f1115;
+            justify-content: center;
+
+            background: #0b0d12;
+
             color: white;
-            font-family: Arial, sans-serif;
+
+            font-family:
+                Arial,
+                sans-serif;
         }
+
 
         .container {
             width: 100%;
-            max-width: 550px;
-            background: #181b22;
+            max-width: 650px;
+
+            background: #151820;
+
+            border:
+                1px solid #272c36;
+
+            border-radius: 20px;
+
             padding: 30px;
-            border-radius: 18px;
         }
+
 
         h1 {
-            font-size: 25px;
-            margin-bottom: 8px;
+            margin: 0 0 8px;
+
+            font-size: 27px;
         }
 
+
         .subtitle {
-            color: #999;
-            font-size: 14px;
             margin-bottom: 25px;
+
+            color: #8f96a3;
+
+            font-size: 14px;
         }
+
+
+        .group {
+            margin-bottom: 18px;
+        }
+
 
         label {
             display: block;
-            font-size: 14px;
+
             margin-bottom: 8px;
+
+            font-size: 14px;
+
+            font-weight: 600;
         }
 
-        input {
+
+        input,
+        textarea {
             width: 100%;
+
             padding: 14px;
-            border: 1px solid #30343d;
+
+            border:
+                1px solid #303541;
+
             border-radius: 10px;
-            background: #101218;
+
+            background: #0e1015;
+
             color: white;
+
             outline: none;
+
             font-size: 14px;
         }
 
-        input:focus {
-            border-color: #777;
+
+        textarea {
+            min-height: 90px;
+
+            resize: vertical;
         }
+
+
+        input:focus,
+        textarea:focus {
+            border-color: #666;
+        }
+
 
         button {
             width: 100%;
-            margin-top: 15px;
+
             padding: 14px;
+
             border: 0;
+
             border-radius: 10px;
+
             background: white;
+
             color: black;
-            font-size: 15px;
+
             font-weight: bold;
+
+            font-size: 15px;
+
             cursor: pointer;
         }
+
 
         button:hover {
             opacity: .9;
         }
 
+
         .result {
             display: none;
+
             margin-top: 25px;
+
+            padding-top: 25px;
+
+            border-top:
+                1px solid #2a2e38;
         }
 
-        .result textarea {
-            width: 100%;
-            min-height: 110px;
-            resize: none;
-            padding: 14px;
-            background: #101218;
-            border: 1px solid #30343d;
-            border-radius: 10px;
-            color: #fff;
-            font-size: 13px;
-            outline: none;
+
+        .short-url {
+            display: flex;
+
+            gap: 10px;
         }
+
+
+        .short-url input {
+            flex: 1;
+        }
+
 
         .copy {
-            margin-top: 10px;
+            width: auto;
+
+            min-width: 100px;
+
+            margin: 0;
         }
 
-        .message {
+
+        .success {
             margin-top: 12px;
+
+            color: #72e072;
+
             font-size: 13px;
-            color: #8ee28e;
+
             display: none;
+        }
+
+
+        .loading {
+            display: none;
+
+            margin-top: 12px;
+
+            color: #aaa;
+
+            font-size: 13px;
+        }
+
+
+        @media(max-width: 500px) {
+
+            .container {
+                padding: 22px;
+            }
+
+            .short-url {
+                flex-direction: column;
+            }
+
+            .copy {
+                width: 100%;
+            }
+
         }
 
     </style>
 
 </head>
 
+
 <body>
+
 
 <div class="container">
 
-    <h1>Redirect URL Generator</h1>
+    <h1>ASVM Link Generator</h1>
 
-    <p class="subtitle">
-        Enter your main URL to generate an encrypted redirect link.
-    </p>
+    <div class="subtitle">
+        Create a short Firebase-powered redirect link.
+    </div>
 
-    <label for="mainLink">
-        Main URL
-    </label>
 
-    <input
-        type="url"
-        id="mainLink"
-        placeholder="https://example.com/page"
-        autocomplete="off"
-    >
+    <!-- MAIN URL -->
 
-    <button onclick="generateURL()">
-        Generate Redirect URL
-    </button>
-
-    <div class="result" id="result">
+    <div class="group">
 
         <label>
-            Generated URL
+            Main URL *
+        </label>
+
+        <input
+            type="url"
+            id="mainUrl"
+            placeholder="https://example.com/page"
+        >
+
+    </div>
+
+
+    <!-- TITLE -->
+
+    <div class="group">
+
+        <label>
+            Title
+        </label>
+
+        <input
+            type="text"
+            id="title"
+            placeholder="My Redirect"
+        >
+
+    </div>
+
+
+    <!-- DESCRIPTION -->
+
+    <div class="group">
+
+        <label>
+            Description
         </label>
 
         <textarea
-            id="generatedURL"
-            readonly
+            id="description"
+            placeholder="Optional description"
         ></textarea>
 
-        <button class="copy" onclick="copyURL()">
-            Copy URL
-        </button>
+    </div>
 
-        <div class="message" id="message">
-            URL copied successfully!
+
+    <!-- CUSTOM DATA -->
+
+    <div class="group">
+
+        <label>
+            ASVM Data
+        </label>
+
+        <textarea
+            id="asvmData"
+            placeholder='{"type":"movie","id":"12345"}'
+        ></textarea>
+
+    </div>
+
+
+    <button id="generate">
+        Generate Short Link
+    </button>
+
+
+    <div
+        class="loading"
+        id="loading"
+    >
+        Creating short link...
+    </div>
+
+
+    <!-- RESULT -->
+
+    <div
+        class="result"
+        id="result"
+    >
+
+        <label>
+            Your Short Link
+        </label>
+
+
+        <div class="short-url">
+
+            <input
+                type="text"
+                id="shortUrl"
+                readonly
+            >
+
+            <button
+                class="copy"
+                id="copy"
+            >
+                Copy
+            </button>
+
+        </div>
+
+
+        <div
+            class="success"
+            id="success"
+        >
+            Short link copied!
         </div>
 
     </div>
@@ -165,153 +354,368 @@
 </div>
 
 
-<script>
+<script type="module">
 
-function encodeLink(url) {
 
-    /*
-     * Convert URL to UTF-8 bytes
-     */
-    const bytes = new TextEncoder().encode(url);
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
 
-    /*
-     * Convert bytes to binary string
-     */
-    let binary = "";
 
-    bytes.forEach(byte => {
-        binary += String.fromCharCode(byte);
-    });
+import {
+    getDatabase,
+    ref,
+    set
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
-    /*
-     * Base64 encode
-     *
-     * URL-safe Base64:
-     * + -> -
-     * / -> _
-     * = removed
-     */
-    return btoa(binary)
-        .replace(/\+/g, "-")
-        .replace(/\//g, "_")
-        .replace(/=/g, "");
+
+// ====================================
+// FIREBASE
+// ====================================
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyAw5aG4WghgQtTqtSWY7YBMo28p-eTx1BM",
+
+    authDomain:
+        "realtime-64520.firebaseapp.com",
+
+    databaseURL:
+        "https://realtime-64520-default-rtdb.firebaseio.com",
+
+    projectId:
+        "realtime-64520",
+
+    storageBucket:
+        "realtime-64520.firebasestorage.app",
+
+    messagingSenderId:
+        "116693487239",
+
+    appId:
+        "1:116693487239:web:e3075a83602a20af2cb222",
+
+    measurementId:
+        "G-9LNW64HM7Y"
+
+};
+
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const db =
+    getDatabase(app);
+
+
+// ====================================
+// ELEMENTS
+// ====================================
+
+const generate =
+    document.getElementById("generate");
+
+const loading =
+    document.getElementById("loading");
+
+const result =
+    document.getElementById("result");
+
+const shortUrl =
+    document.getElementById("shortUrl");
+
+
+// ====================================
+// RANDOM SHORT ID
+// ====================================
+
+function generateShortId(length = 8) {
+
+    const chars =
+        "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
+
+    let id = "";
+
+    const array =
+        new Uint32Array(length);
+
+    crypto.getRandomValues(array);
+
+
+    for (let i = 0; i < length; i++) {
+
+        id += chars[
+            array[i] % chars.length
+        ];
+
+    }
+
+
+    return id;
 
 }
 
 
-function generateURL() {
+// ====================================
+// GENERATE
+// ====================================
 
-    const input = document.getElementById("mainLink");
-    const result = document.getElementById("result");
-    const output = document.getElementById("generatedURL");
+generate.addEventListener(
+    "click",
+    async () => {
 
-    const mainLink = input.value.trim();
+        const mainUrl =
+            document
+                .getElementById("mainUrl")
+                .value
+                .trim();
 
-    if (!mainLink) {
-        alert("Please enter a URL.");
-        return;
-    }
 
-    let url;
+        const title =
+            document
+                .getElementById("title")
+                .value
+                .trim();
 
-    try {
 
-        url = new URL(mainLink);
+        const description =
+            document
+                .getElementById("description")
+                .value
+                .trim();
 
-    } catch (error) {
 
-        alert("Please enter a valid URL.");
-        return;
+        const asvmDataRaw =
+            document
+                .getElementById("asvmData")
+                .value
+                .trim();
 
-    }
 
-    /*
-     * Only HTTP / HTTPS URLs
-     */
-    if (
-        url.protocol !== "http:" &&
-        url.protocol !== "https:"
-    ) {
+        // ==========================
+        // VALIDATE URL
+        // ==========================
 
-        alert("Only HTTP and HTTPS URLs are allowed.");
-        return;
+        if (!mainUrl) {
 
-    }
-
-    /*
-     * Encode main URL
-     */
-    const encrypted = encodeLink(url.href);
-
-    /*
-     * Current generator location
-     *
-     * Example:
-     * https://yourdomain.com/generator.html
-     *
-     * becomes:
-     * https://yourdomain.com/index.html?link=XXXXX
-     */
-
-    const basePath =
-        window.location.href
-            .substring(
-                0,
-                window.location.href.lastIndexOf("/")
+            alert(
+                "Please enter the main URL."
             );
 
-    const finalURL =
-        basePath +
-        "/index.html?link=" +
-        encodeURIComponent(encrypted);
-
-    output.value = finalURL;
-
-    result.style.display = "block";
-
-}
+            return;
+        }
 
 
-async function copyURL() {
+        let parsedUrl;
 
-    const output =
-        document.getElementById("generatedURL");
+        try {
 
-    const message =
-        document.getElementById("message");
+            parsedUrl =
+                new URL(mainUrl);
 
-    try {
+        } catch {
 
-        await navigator.clipboard.writeText(
-            output.value
-        );
+            alert(
+                "Please enter a valid URL."
+            );
 
-        message.style.display = "block";
+            return;
+        }
 
-        setTimeout(() => {
-            message.style.display = "none";
-        }, 2000);
 
-    } catch (error) {
+        if (
+            parsedUrl.protocol !== "https:" &&
+            parsedUrl.protocol !== "http:"
+        ) {
 
-        /*
-         * Fallback for older browsers
-         */
-        output.select();
+            alert(
+                "Only HTTP/HTTPS URLs are allowed."
+            );
 
-        document.execCommand("copy");
+            return;
+        }
 
-        message.style.display = "block";
 
-        setTimeout(() => {
-            message.style.display = "none";
-        }, 2000);
+        // ==========================
+        // ASVM DATA
+        // ==========================
+
+        let asvmData = {};
+
+
+        if (asvmDataRaw) {
+
+            try {
+
+                asvmData =
+                    JSON.parse(asvmDataRaw);
+
+            } catch {
+
+                alert(
+                    "ASVM Data must be valid JSON."
+                );
+
+                return;
+            }
+
+        }
+
+
+        // ==========================
+        // LOADING
+        // ==========================
+
+        generate.disabled = true;
+
+        loading.style.display = "block";
+
+
+        try {
+
+            // ======================
+            // CREATE RANDOM ID
+            // ======================
+
+            const id =
+                generateShortId(8);
+
+
+            // ======================
+            // SAVE TO FIREBASE
+            // ======================
+
+            await set(
+                ref(db, "links/" + id),
+                {
+
+                    url: parsedUrl.href,
+
+                    title:
+                        title || "Redirect",
+
+                    description:
+                        description || "",
+
+                    asvm:
+                        asvmData,
+
+                    active: true,
+
+                    createdAt:
+                        Date.now()
+
+                }
+            );
+
+
+            // ======================
+            // CREATE SHORT URL
+            // ======================
+
+            const base =
+                window.location.origin +
+                window.location.pathname
+                    .substring(
+                        0,
+                        window.location.pathname
+                            .lastIndexOf("/")
+                    );
+
+
+            const finalUrl =
+                base +
+                "/index.html?l=" +
+                id;
+
+
+            shortUrl.value =
+                finalUrl;
+
+
+            result.style.display =
+                "block";
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert(
+                "Could not create short link."
+            );
+
+        }
+
+
+        loading.style.display =
+            "none";
+
+        generate.disabled =
+            false;
 
     }
+);
 
-}
+
+// ====================================
+// COPY
+// ====================================
+
+document
+    .getElementById("copy")
+    .addEventListener(
+        "click",
+        async () => {
+
+            const value =
+                shortUrl.value;
+
+
+            try {
+
+                await navigator
+                    .clipboard
+                    .writeText(value);
+
+            } catch {
+
+                shortUrl.select();
+
+                document.execCommand(
+                    "copy"
+                );
+
+            }
+
+
+            const success =
+                document.getElementById(
+                    "success"
+                );
+
+
+            success.style.display =
+                "block";
+
+
+            setTimeout(
+                () => {
+
+                    success.style.display =
+                        "none";
+
+                },
+                2000
+            );
+
+        }
+    );
 
 </script>
+
 
 </body>
 </html>
